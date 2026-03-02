@@ -1,0 +1,2498 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Mama Kiki — Kue Lebaran Homemade</title>
+
+<!-- ══ PWA META TAGS ══ -->
+<meta name="application-name" content="Mama Kiki">
+<meta name="description" content="Kue kering lebaran homemade — Nastar, Kastengel, Putri Salju & lebih. Pesan langsung via WhatsApp!">
+<meta name="theme-color" content="#1A3A2A">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Mama Kiki">
+<meta name="msapplication-TileColor" content="#1A3A2A">
+<meta name="msapplication-tap-highlight" content="no">
+
+<!-- ══ OPEN GRAPH ══ -->
+<meta property="og:title" content="Mama Kiki — Kue Lebaran Homemade">
+<meta property="og:description" content="Kue kering lebaran homemade tanpa pengawet. Nastar, Kastengel, Putri Salju & lebih!">
+<meta property="og:type" content="website">
+
+<!-- ══ APPLE TOUCH ICONS ══ -->
+<link rel="apple-touch-icon" sizes="180x180" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><rect width='180' height='180' rx='40' fill='%231A3A2A'/><text y='125' x='90' text-anchor='middle' font-size='110'>🍪</text></svg>">
+<link rel="apple-touch-startup-image" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' fill='%231A3A2A'/><text y='320' x='256' text-anchor='middle' font-size='280'>🍪</text></svg>">
+
+<!-- ══ MANIFEST (inline via data URI) ══ -->
+<link rel="manifest" id="pwa-manifest">
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --hijau-tua:   #1A3A2A;
+  --hijau:       #2D5A3D;
+  --hijau-muda:  #4A8C5C;
+  --emas:        #C9973A;
+  --emas-muda:   #E8C06A;
+  --krem:        #FDF6EC;
+  --krem-hangat: #F5E6C8;
+  --putih:       #FFFDF8;
+  --teks:        #2C1A08;
+  --teks-abu:    #7A6A56;
+  --pink-soft:   #F2E8DC;
+}
+
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--putih);
+  color:var(--teks);
+  font-family:'Nunito',sans-serif;
+  font-weight:400;
+  overflow-x:hidden;
+}
+
+/* ══════════════════════════════
+   ORNAMEN & DEKORASI
+══════════════════════════════ */
+.star-pattern{
+  background-image:
+    radial-gradient(circle, rgba(201,151,58,0.08) 1px, transparent 1px);
+  background-size:28px 28px;
+}
+
+/* ══════════════════════════════
+   NAV DRAWER (MOBILE)
+══════════════════════════════ */
+.drawer-overlay{
+  position:fixed;inset:0;background:rgba(0,0,0,0.5);
+  backdrop-filter:blur(4px);z-index:540;
+  opacity:0;pointer-events:none;transition:opacity .3s;
+}
+.drawer-overlay.buka{opacity:1;pointer-events:all;}
+.nav-drawer{
+  position:fixed;top:0;left:-100%;width:82%;max-width:300px;
+  height:100vh;background:var(--hijau-tua);
+  z-index:550;transition:left .38s cubic-bezier(.4,0,.2,1);
+  display:flex;flex-direction:column;padding:0;overflow:hidden;
+}
+.nav-drawer.buka{left:0;}
+.drawer-top{
+  background:var(--hijau);
+  padding:40px 28px 28px;
+  border-bottom:1px solid rgba(201,151,58,.2);
+}
+.drawer-logo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:26px;font-weight:700;color:var(--emas-muda);
+  margin-bottom:4px;
+}
+.drawer-sub{font-size:11px;color:rgba(232,192,106,.55);letter-spacing:2px;}
+.drawer-links{list-style:none;padding:20px 0;}
+.drawer-links li a{
+  display:block;padding:14px 28px;
+  font-size:15px;font-weight:600;color:rgba(253,246,236,.7);
+  text-decoration:none;border-bottom:1px solid rgba(201,151,58,.07);
+  transition:all .2s;
+}
+.drawer-links li a:hover{color:var(--emas-muda);padding-left:36px;}
+.drawer-footer{
+  margin-top:auto;padding:24px 28px;
+  border-top:1px solid rgba(201,151,58,.1);
+}
+.drawer-footer p{font-size:12px;color:rgba(253,246,236,.35);line-height:1.8;}
+.drawer-footer strong{color:var(--emas-muda);}
+
+/* ══════════════════════════════
+   NAVBAR
+══════════════════════════════ */
+nav{
+  position:fixed;top:0;width:100%;z-index:500;
+  padding:18px 64px;
+  display:flex;align-items:center;justify-content:space-between;
+  transition:all .4s;
+}
+nav.padat{
+  background:rgba(26,58,42,.96);
+  backdrop-filter:blur(16px);
+  padding:12px 64px;
+  box-shadow:0 2px 30px rgba(0,0,0,.2);
+}
+.nav-brand{
+  display:flex;align-items:center;gap:12px;
+}
+.nav-brand-icon{
+  width:40px;height:40px;
+  background:var(--emas);
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;
+  clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);
+}
+.nav-logo-teks{display:flex;flex-direction:column;line-height:1.1;}
+.nav-nama{
+  font-family:'Cormorant Garamond',serif;
+  font-size:20px;font-weight:700;color:var(--emas-muda);
+  letter-spacing:.5px;
+}
+.nav-sub{font-size:9px;color:rgba(232,192,106,.5);letter-spacing:2.5px;text-transform:uppercase;}
+.nav-links{list-style:none;display:flex;gap:32px;}
+.nav-links a{
+  font-size:12px;font-weight:600;letter-spacing:1.5px;
+  text-transform:uppercase;text-decoration:none;
+  color:rgba(253,246,236,.7);
+  position:relative;transition:color .3s;
+}
+.nav-links a::after{
+  content:'';position:absolute;bottom:-3px;left:0;
+  width:0;height:1.5px;background:var(--emas-muda);
+  transition:width .3s;
+}
+.nav-links a:hover{color:var(--emas-muda);}
+.nav-links a:hover::after{width:100%;}
+.nav-kanan{display:flex;align-items:center;gap:14px;}
+.btn-cart-nav{
+  background:var(--emas);color:var(--hijau-tua);
+  border:none;padding:10px 20px;
+  font-family:'Nunito',sans-serif;
+  font-size:12px;font-weight:700;letter-spacing:1px;
+  text-transform:uppercase;
+  border-radius:24px;
+  display:flex;align-items:center;gap:8px;
+  transition:all .3s;position:relative;cursor:pointer;
+}
+.btn-cart-nav:hover{background:var(--emas-muda);transform:scale(1.04);}
+.btn-cart-nav .cnt{
+  background:var(--hijau-tua);color:var(--emas);
+  font-size:9px;font-weight:800;
+  width:17px;height:17px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+}
+.hamburger{
+  display:none;flex-direction:column;gap:5px;
+  background:none;border:none;padding:4px;cursor:pointer;
+}
+.hamburger span{
+  display:block;width:22px;height:2px;
+  background:var(--emas-muda);transition:all .3s;
+  border-radius:2px;transform-origin:center;
+}
+.hamburger.aktif span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.hamburger.aktif span:nth-child(2){opacity:0;transform:scaleX(0);}
+.hamburger.aktif span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+/* ══════════════════════════════
+   HERO
+══════════════════════════════ */
+.hero{
+  min-height:100vh;
+  background:linear-gradient(160deg, var(--hijau-tua) 0%, #0F2B1C 100%);
+  display:grid;grid-template-columns:1fr 1fr;
+  align-items:center;
+  position:relative;overflow:hidden;
+}
+.hero-ornamen{
+  position:absolute;
+  border-radius:50%;
+  border:1px solid rgba(201,151,58,.12);
+  pointer-events:none;
+}
+.hero::before{
+  content:'';position:absolute;top:-200px;right:-200px;
+  width:600px;height:600px;border-radius:50%;
+  background:radial-gradient(circle, rgba(201,151,58,.12) 0%, transparent 70%);
+  pointer-events:none;
+}
+.hero::after{
+  content:'✦ ✦ ✦';
+  position:absolute;bottom:40px;right:60px;
+  font-size:22px;color:rgba(201,151,58,.2);
+  letter-spacing:16px;
+}
+.hero-kiri{
+  padding:140px 64px 80px;
+  position:relative;z-index:2;
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:10px;
+  background:rgba(201,151,58,.15);
+  border:1px solid rgba(201,151,58,.3);
+  border-radius:100px;
+  padding:7px 16px 7px 10px;
+  margin-bottom:32px;
+  opacity:0;animation:naik .8s .2s forwards;
+}
+.hero-badge-dot{
+  width:8px;height:8px;background:var(--emas);border-radius:50%;
+  animation:denyut 1.5s ease-in-out infinite;
+}
+.hero-badge span{font-size:11px;font-weight:600;color:var(--emas-muda);letter-spacing:1px;}
+.hero-judul{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(52px,6vw,90px);
+  font-weight:700;line-height:.95;
+  color:var(--krem);margin-bottom:12px;
+  opacity:0;animation:naik .9s .4s forwards;
+}
+.hero-judul em{
+  font-style:italic;color:var(--emas);
+  display:block;
+}
+.hero-tagline{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(20px,2.4vw,30px);
+  font-weight:400;font-style:italic;
+  color:rgba(232,192,106,.7);
+  margin-bottom:28px;
+  opacity:0;animation:naik .9s .55s forwards;
+}
+.hero-desc{
+  font-size:15px;line-height:1.9;
+  color:rgba(253,246,236,.55);
+  max-width:420px;margin-bottom:44px;
+  opacity:0;animation:naik .9s .7s forwards;
+}
+.hero-tombol{
+  display:flex;gap:14px;flex-wrap:wrap;
+  opacity:0;animation:naik .9s .85s forwards;
+}
+.btn-primer{
+  background:var(--emas);color:var(--hijau-tua);
+  padding:15px 36px;font-size:13px;font-weight:700;
+  letter-spacing:1.5px;text-transform:uppercase;
+  border:none;border-radius:100px;text-decoration:none;
+  display:inline-block;transition:all .3s;cursor:pointer;
+  font-family:'Nunito',sans-serif;
+}
+.btn-primer:hover{background:var(--emas-muda);transform:translateY(-3px);box-shadow:0 12px 32px rgba(201,151,58,.35);}
+.btn-sekunder{
+  background:transparent;color:var(--krem);
+  padding:15px 36px;font-size:13px;font-weight:600;
+  letter-spacing:1.5px;text-transform:uppercase;
+  border:1.5px solid rgba(253,246,236,.25);
+  border-radius:100px;text-decoration:none;
+  display:inline-block;transition:all .3s;
+}
+.btn-sekunder:hover{border-color:var(--emas);color:var(--emas);}
+.hero-stats{
+  display:flex;gap:32px;margin-top:48px;
+  padding-top:32px;border-top:1px solid rgba(201,151,58,.15);
+  opacity:0;animation:naik .9s 1s forwards;
+}
+.stat-item{text-align:center;}
+.stat-angka{
+  font-family:'Cormorant Garamond',serif;
+  font-size:32px;font-weight:700;color:var(--emas);line-height:1;
+}
+.stat-label{font-size:10px;color:rgba(253,246,236,.4);letter-spacing:1.5px;text-transform:uppercase;margin-top:4px;}
+
+.hero-kanan{
+  display:flex;justify-content:center;align-items:center;
+  position:relative;z-index:2;padding:140px 64px 80px 0;
+}
+.hero-gambar-wrap{
+  position:relative;width:460px;height:520px;
+  opacity:0;animation:muncul 1.2s .4s forwards;
+}
+.hero-gambar-bulat{
+  position:absolute;bottom:0;left:50%;transform:translateX(-50%);
+  width:380px;height:460px;
+  background:linear-gradient(160deg,rgba(201,151,58,.15),rgba(201,151,58,.05));
+  border:1px solid rgba(201,151,58,.2);
+  border-radius:200px 200px 0 0;
+}
+.hero-img-utama{
+  position:absolute;bottom:0;left:50%;transform:translateX(-50%);
+  width:340px;height:420px;object-fit:cover;
+  border-radius:180px 180px 0 0;z-index:3;
+  border:3px solid rgba(201,151,58,.25);
+}
+.hero-kartu-float{
+  position:absolute;z-index:4;
+  background:rgba(26,58,42,.85);
+  border:1px solid rgba(201,151,58,.25);
+  backdrop-filter:blur(12px);
+  padding:14px 18px;border-radius:12px;
+  animation:mengambang 4s ease-in-out infinite;
+}
+.hero-kartu-float.kiri{bottom:80px;left:-20px;}
+.hero-kartu-float.kanan{top:80px;right:-20px;animation-delay:2s;}
+.float-label{font-size:9px;color:rgba(253,246,236,.45);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px;}
+.float-val{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:var(--emas);}
+.float-sub{font-size:10px;color:rgba(253,246,236,.4);}
+.hero-dekor-bulan{
+  position:absolute;top:40px;right:40px;
+  font-size:40px;opacity:.18;
+  animation:putar 20s linear infinite;
+}
+
+/* ══════════════════════════════
+   STRIP LEBARAN BERJALAN
+══════════════════════════════ */
+.strip{
+  background:var(--emas);
+  padding:14px 0;overflow:hidden;
+}
+.strip-dalam{
+  display:flex;gap:0;width:max-content;
+  animation:jalan 30s linear infinite;
+}
+.strip-item{
+  font-family:'Cormorant Garamond',serif;
+  font-size:15px;font-weight:600;font-style:italic;
+  color:var(--hijau-tua);
+  white-space:nowrap;padding:0 32px;
+  display:flex;align-items:center;gap:32px;
+}
+.strip-item::after{content:'❋';font-style:normal;color:var(--hijau);}
+
+/* ══════════════════════════════
+   TENTANG
+══════════════════════════════ */
+.tentang{
+  padding:110px 64px;
+  background:var(--putih);
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:80px;align-items:center;
+}
+.tentang-foto-kol{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  grid-template-rows:280px 180px;
+  gap:12px;position:relative;
+}
+.tentang-foto-kol::before{
+  content:'';position:absolute;
+  top:-20px;left:-20px;right:20px;bottom:20px;
+  border:2px solid rgba(201,151,58,.15);
+  border-radius:4px;pointer-events:none;z-index:0;
+}
+.tfoto{
+  overflow:hidden;border-radius:4px;position:relative;z-index:1;
+}
+.tfoto img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform .6s ease;
+  filter:saturate(1.05);
+}
+.tfoto:hover img{transform:scale(1.06);}
+.tfoto:nth-child(1){grid-row:span 2;}
+
+.label-seksi{
+  display:flex;align-items:center;gap:10px;margin-bottom:18px;
+}
+.label-garis{width:28px;height:2px;background:var(--emas);border-radius:2px;}
+.label-teks{
+  font-size:10px;font-weight:700;letter-spacing:3px;
+  text-transform:uppercase;color:var(--emas);
+}
+.judul-seksi{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(34px,4vw,54px);
+  font-weight:700;line-height:1.05;
+  color:var(--hijau-tua);margin-bottom:20px;
+}
+.judul-seksi em{font-style:italic;color:var(--emas);}
+.teks-isi{
+  font-size:14px;line-height:1.95;
+  color:var(--teks-abu);margin-bottom:30px;
+}
+.keunggulan-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:16px;
+  margin-top:8px;
+}
+.keung-item{
+  background:var(--krem);
+  border:1px solid rgba(201,151,58,.15);
+  border-radius:8px;padding:16px;
+  display:flex;gap:10px;align-items:flex-start;
+  transition:all .3s;
+}
+.keung-item:hover{box-shadow:0 8px 24px rgba(201,151,58,.12);transform:translateY(-2px);}
+.keung-icon{font-size:22px;flex-shrink:0;margin-top:1px;}
+.keung-nama{font-size:13px;font-weight:700;color:var(--hijau-tua);margin-bottom:3px;}
+.keung-teks{font-size:11px;color:var(--teks-abu);line-height:1.5;}
+
+/* ══════════════════════════════
+   PRODUK
+══════════════════════════════ */
+.produk{
+  padding:100px 64px;
+  background:var(--krem);
+  position:relative;overflow:hidden;
+}
+.produk::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:4px;
+  background:linear-gradient(90deg,var(--emas),var(--hijau-muda),var(--emas));
+}
+.produk-header{
+  display:flex;justify-content:space-between;align-items:flex-end;
+  margin-bottom:50px;
+}
+.produk-header-kiri .judul-seksi{margin-bottom:0;}
+.filter-row{display:flex;gap:6px;}
+.ftab{
+  padding:9px 20px;font-size:11px;font-weight:700;
+  letter-spacing:1.5px;text-transform:uppercase;
+  border:1.5px solid rgba(45,90,61,.2);
+  background:transparent;color:rgba(44,26,8,.5);
+  border-radius:100px;transition:all .3s;cursor:pointer;
+  font-family:'Nunito',sans-serif;
+}
+.ftab.aktif,.ftab:hover{
+  background:var(--hijau);color:white;
+  border-color:var(--hijau);
+}
+.produk-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
+}
+.kue-kartu{
+  background:var(--putih);
+  border-radius:16px;overflow:hidden;
+  border:1px solid rgba(201,151,58,.1);
+  transition:all .45s cubic-bezier(.4,0,.2,1);
+  position:relative;cursor:pointer;
+}
+.kue-kartu:hover{
+  transform:translateY(-10px);
+  box-shadow:0 24px 60px rgba(45,90,61,.15);
+  border-color:rgba(201,151,58,.35);
+}
+.kue-gambar{
+  height:220px;position:relative;overflow:hidden;
+}
+.kue-gambar img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform .6s ease;
+}
+.kue-kartu:hover .kue-gambar img{transform:scale(1.08);}
+.kue-badge{
+  position:absolute;top:14px;left:14px;
+  font-size:9px;font-weight:800;letter-spacing:1.5px;
+  text-transform:uppercase;padding:5px 12px;
+  border-radius:100px;
+}
+.badge-terlaris{background:var(--emas);color:var(--hijau-tua);}
+.badge-baru{background:var(--hijau);color:white;}
+.badge-limited{background:#C0392B;color:white;}
+.kue-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(transparent 40%,rgba(26,58,42,.8));
+  display:flex;align-items:flex-end;justify-content:center;
+  padding-bottom:20px;
+  opacity:0;transition:opacity .35s;
+}
+.kue-kartu:hover .kue-overlay{opacity:1;}
+.btn-tambah-kue{
+  background:var(--emas);color:var(--hijau-tua);
+  border:none;padding:11px 28px;border-radius:100px;
+  font-size:12px;font-weight:800;letter-spacing:1px;
+  text-transform:uppercase;font-family:'Nunito',sans-serif;
+  transition:all .2s;cursor:pointer;
+}
+.btn-tambah-kue:hover{background:var(--emas-muda);}
+.kue-info{padding:20px 22px 24px;}
+.kue-kategori{
+  font-size:10px;font-weight:700;letter-spacing:2px;
+  text-transform:uppercase;color:var(--emas);margin-bottom:7px;
+}
+.kue-nama{
+  font-family:'Cormorant Garamond',serif;
+  font-size:21px;font-weight:700;
+  color:var(--hijau-tua);margin-bottom:7px;line-height:1.2;
+}
+.kue-deskripsi{font-size:12px;color:var(--teks-abu);line-height:1.7;margin-bottom:16px;}
+.kue-bawah{display:flex;align-items:center;justify-content:space-between;}
+.kue-harga{
+  font-family:'Cormorant Garamond',serif;
+  font-size:22px;font-weight:700;color:var(--emas);
+}
+.kue-harga .per{font-size:12px;color:var(--teks-abu);font-family:'Nunito',sans-serif;margin-left:3px;}
+.kue-rating{display:flex;align-items:center;gap:4px;}
+.rating-bintang{color:var(--emas);font-size:12px;}
+.rating-angka{font-size:11px;color:var(--teks-abu);}
+.btn-tambah-mobile{
+  display:none;
+  width:100%;padding:12px;margin-top:14px;
+  background:var(--hijau);color:white;
+  border:none;border-radius:100px;
+  font-size:12px;font-weight:700;letter-spacing:1px;
+  text-transform:uppercase;font-family:'Nunito',sans-serif;
+  cursor:pointer;transition:background .3s;
+}
+.btn-tambah-mobile:hover{background:var(--hijau-muda);}
+
+/* ══════════════════════════════
+   PAKET HAMPERS
+══════════════════════════════ */
+.hampers{
+  padding:100px 64px;
+  background:var(--hijau-tua);
+  position:relative;overflow:hidden;
+}
+.hampers::before{
+  content:'HAMPERS';
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  font-family:'Cormorant Garamond',serif;
+  font-size:18vw;font-weight:700;font-style:italic;
+  color:rgba(201,151,58,.04);
+  white-space:nowrap;pointer-events:none;
+}
+.hampers-header{text-align:center;margin-bottom:60px;}
+.hampers-header .judul-seksi{color:var(--krem);}
+.hampers-header .teks-isi{color:rgba(253,246,236,.5);max-width:500px;margin:0 auto;}
+.hampers-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.hampers-kartu{
+  background:rgba(253,246,236,.05);
+  border:1px solid rgba(201,151,58,.2);
+  border-radius:16px;padding:36px 28px;
+  text-align:center;position:relative;
+  transition:all .4s;overflow:hidden;
+}
+.hampers-kartu::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,transparent,var(--emas),transparent);
+  opacity:0;transition:opacity .3s;
+}
+.hampers-kartu:hover{transform:translateY(-8px);border-color:rgba(201,151,58,.45);}
+.hampers-kartu:hover::before{opacity:1;}
+.hampers-kartu.unggulan{
+  background:rgba(201,151,58,.1);
+  border-color:rgba(201,151,58,.4);
+}
+.hampers-icon{font-size:52px;margin-bottom:16px;display:block;}
+.hampers-badge-unggulan{
+  position:absolute;top:16px;right:16px;
+  background:var(--emas);color:var(--hijau-tua);
+  font-size:9px;font-weight:800;letter-spacing:1.5px;
+  text-transform:uppercase;padding:4px 10px;border-radius:100px;
+}
+.hampers-nama{
+  font-family:'Cormorant Garamond',serif;
+  font-size:24px;font-weight:700;color:var(--krem);margin-bottom:8px;
+}
+.hampers-isi{font-size:12px;color:rgba(253,246,236,.45);line-height:1.8;margin-bottom:20px;}
+.hampers-harga{
+  font-family:'Cormorant Garamond',serif;
+  font-size:30px;font-weight:700;color:var(--emas);margin-bottom:20px;
+}
+.hampers-harga .satuan{font-size:14px;font-family:'Nunito',sans-serif;color:rgba(253,246,236,.4);}
+.btn-pilih-hampers{
+  width:100%;padding:13px;
+  background:transparent;
+  border:1.5px solid rgba(201,151,58,.4);
+  color:var(--emas);
+  font-size:12px;font-weight:700;letter-spacing:1px;
+  text-transform:uppercase;border-radius:100px;
+  font-family:'Nunito',sans-serif;transition:all .3s;cursor:pointer;
+}
+.btn-pilih-hampers:hover{background:var(--emas);color:var(--hijau-tua);}
+.hampers-kartu.unggulan .btn-pilih-hampers{
+  background:var(--emas);color:var(--hijau-tua);border-color:var(--emas);
+}
+.hampers-kartu.unggulan .btn-pilih-hampers:hover{background:var(--emas-muda);}
+
+/* ══════════════════════════════
+   PROMO LEBARAN
+══════════════════════════════ */
+.promo{
+  padding:100px 64px;
+  background:var(--pink-soft);
+  display:grid;grid-template-columns:1.1fr 1fr;
+  gap:60px;align-items:center;
+  position:relative;overflow:hidden;
+}
+.promo::after{
+  content:'☽ ☆ ☽';
+  position:absolute;right:80px;top:40px;
+  font-size:28px;color:rgba(201,151,58,.25);
+  letter-spacing:20px;
+}
+.promo-visual{
+  border-radius:16px;overflow:hidden;
+  height:420px;position:relative;
+}
+.promo-visual img{width:100%;height:100%;object-fit:cover;}
+.promo-visual::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(160deg,transparent 40%,rgba(26,58,42,.6));
+}
+.promo-diskon-badge{
+  position:absolute;bottom:30px;left:30px;z-index:2;
+  background:var(--emas);color:var(--hijau-tua);
+  padding:16px 22px;border-radius:12px;text-align:center;
+}
+.promo-persen{
+  font-family:'Cormorant Garamond',serif;
+  font-size:48px;font-weight:700;line-height:1;
+}
+.promo-keterangan{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-top:2px;}
+.promo-konten .judul-seksi{color:var(--hijau-tua);}
+.promo-konten .teks-isi{color:var(--teks-abu);}
+.promo-list{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:30px;}
+.promo-list li{
+  display:flex;align-items:center;gap:10px;
+  font-size:13px;color:var(--teks);font-weight:600;
+}
+.promo-list li::before{
+  content:'✓';color:var(--hijau);font-size:14px;font-weight:700;
+  width:22px;height:22px;background:rgba(45,90,61,.12);
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+.promo-kode{
+  background:rgba(201,151,58,.12);
+  border:1.5px dashed rgba(201,151,58,.5);
+  border-radius:10px;padding:16px 22px;
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:24px;
+}
+.promo-kode-teks{font-size:10px;color:var(--teks-abu);letter-spacing:1px;margin-bottom:4px;}
+.promo-kode-val{
+  font-family:'Cormorant Garamond',serif;
+  font-size:22px;font-weight:700;color:var(--emas);letter-spacing:4px;
+}
+.copy-btn{
+  background:var(--emas);color:var(--hijau-tua);
+  border:none;padding:8px 16px;border-radius:8px;
+  font-size:11px;font-weight:700;cursor:pointer;
+  font-family:'Nunito',sans-serif;transition:all .2s;
+}
+.copy-btn:hover{background:var(--emas-muda);}
+
+/* ══════════════════════════════
+   TESTIMONI
+══════════════════════════════ */
+.testi{
+  padding:100px 64px;
+  background:var(--putih);
+}
+.testi-header{margin-bottom:56px;}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+.testi-kartu{
+  background:var(--krem);
+  border:1px solid rgba(201,151,58,.15);
+  border-radius:14px;padding:32px;
+  position:relative;transition:all .35s;
+}
+.testi-kartu:hover{
+  box-shadow:0 20px 50px rgba(45,90,61,.1);
+  transform:translateY(-4px);
+}
+.testi-kutipan{
+  font-family:'Cormorant Garamond',serif;
+  font-size:64px;font-style:italic;
+  color:rgba(201,151,58,.15);
+  position:absolute;top:8px;left:24px;line-height:1;
+}
+.testi-bintang{color:var(--emas);font-size:15px;margin-bottom:14px;}
+.testi-teks{
+  font-size:14px;line-height:1.85;color:var(--teks-abu);
+  margin-bottom:22px;position:relative;z-index:1;
+}
+.testi-profil{display:flex;align-items:center;gap:12px;}
+.testi-avatar{
+  width:44px;height:44px;border-radius:50%;
+  object-fit:cover;border:2px solid var(--emas);
+  background:var(--hijau-muda);
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;flex-shrink:0;
+}
+.testi-nama{font-weight:700;font-size:13px;color:var(--hijau-tua);}
+.testi-kota{font-size:11px;color:var(--teks-abu);margin-top:2px;}
+.testi-produk{
+  display:inline-block;
+  background:rgba(201,151,58,.1);color:var(--emas);
+  font-size:10px;font-weight:700;letter-spacing:1px;
+  padding:3px 10px;border-radius:100px;margin-top:4px;
+}
+
+/* ══════════════════════════════
+   FOOTER
+══════════════════════════════ */
+footer{
+  background:var(--hijau-tua);
+  border-top:1px solid rgba(201,151,58,.1);
+}
+.footer-atas{
+  padding:80px 64px 60px;
+  display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;gap:50px;
+}
+.footer-brand-logo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:28px;font-weight:700;color:var(--emas-muda);
+  display:block;margin-bottom:6px;
+}
+.footer-brand-sub{
+  font-size:10px;color:rgba(232,192,106,.45);
+  letter-spacing:2.5px;text-transform:uppercase;
+  display:block;margin-bottom:18px;
+}
+.footer-brand p{
+  font-size:13px;color:rgba(253,246,236,.4);
+  line-height:1.9;max-width:230px;margin-bottom:22px;
+}
+.sosmed{display:flex;gap:10px;}
+.sosmed-btn{
+  width:36px;height:36px;
+  border:1px solid rgba(201,151,58,.2);
+  border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:15px;text-decoration:none;
+  color:rgba(253,246,236,.45);transition:all .3s;
+}
+.sosmed-btn:hover{border-color:var(--emas);color:var(--emas);}
+.footer-kol h4{
+  font-family:'Cormorant Garamond',serif;
+  font-size:18px;font-weight:700;color:var(--krem);margin-bottom:20px;
+}
+.footer-kol ul{list-style:none;}
+.footer-kol li{margin-bottom:10px;}
+.footer-kol a{
+  color:rgba(253,246,236,.4);text-decoration:none;
+  font-size:13px;transition:color .3s;
+}
+.footer-kol a:hover{color:var(--emas-muda);}
+.footer-bawah{
+  padding:22px 64px;border-top:1px solid rgba(201,151,58,.08);
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:11px;color:rgba(253,246,236,.25);
+}
+
+/* ══════════════════════════════
+   CART SIDEBAR
+══════════════════════════════ */
+.overlay-cart{
+  position:fixed;inset:0;background:rgba(0,0,0,.55);
+  backdrop-filter:blur(6px);z-index:700;
+  opacity:0;pointer-events:none;transition:opacity .3s;
+}
+.overlay-cart.buka{opacity:1;pointer-events:all;}
+.sidebar-cart{
+  position:fixed;top:0;right:-500px;width:480px;
+  height:100vh;background:var(--putih);
+  border-left:1px solid rgba(201,151,58,.2);
+  z-index:800;transition:right .42s cubic-bezier(.4,0,.2,1);
+  display:flex;flex-direction:column;
+}
+.sidebar-cart.buka{right:0;}
+.cart-kepala{
+  padding:28px 28px 22px;
+  background:var(--hijau-tua);
+  display:flex;justify-content:space-between;align-items:center;
+}
+.cart-kepala h3{
+  font-family:'Cormorant Garamond',serif;
+  font-size:22px;font-weight:700;color:var(--emas-muda);
+}
+.tutup-cart{
+  background:none;border:none;font-size:26px;
+  color:rgba(253,246,236,.5);cursor:pointer;transition:color .2s;
+}
+.tutup-cart:hover{color:var(--emas-muda);}
+.cart-isi{flex:1;overflow-y:auto;padding:20px 28px;}
+.cart-kosong{
+  height:280px;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;text-align:center;
+}
+.cart-kosong span{font-size:52px;margin-bottom:14px;}
+.cart-kosong p{font-size:13px;color:var(--teks-abu);line-height:1.7;}
+.cart-item{
+  display:flex;gap:14px;padding:14px 0;
+  border-bottom:1px solid rgba(201,151,58,.1);
+}
+.cart-item-img{
+  width:72px;height:72px;border-radius:10px;
+  overflow:hidden;flex-shrink:0;
+}
+.cart-item-img img{width:100%;height:100%;object-fit:cover;}
+.cart-item-info{flex:1;}
+.cart-item-nama{font-weight:700;font-size:13px;color:var(--hijau-tua);margin-bottom:4px;}
+.cart-item-harga{font-size:13px;color:var(--emas);font-weight:600;}
+.cart-qty{display:flex;align-items:center;gap:10px;margin-top:8px;}
+.qty-btn{
+  width:30px;height:30px;
+  background:var(--krem);border:1px solid rgba(201,151,58,.25);
+  border-radius:6px;color:var(--hijau);font-size:16px;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:all .2s;
+  font-weight:700;line-height:1;
+  font-family:'Nunito',sans-serif;
+  touch-action:manipulation;
+  -webkit-tap-highlight-color:transparent;
+  user-select:none;
+}
+.qty-btn:hover{background:var(--emas);color:var(--hijau-tua);border-color:var(--emas);}
+.qty-angka{font-size:14px;font-weight:700;color:var(--hijau-tua);min-width:24px;text-align:center;}
+.hapus-item{background:none;border:none;font-size:18px;cursor:pointer;color:rgba(120,100,80,.3);transition:color .2s;padding:8px;touch-action:manipulation;-webkit-tap-highlight-color:transparent;}
+.hapus-item:hover{color:#E74C3C;}
+.cart-kaki{padding:22px 28px;border-top:1px solid rgba(201,151,58,.12);}
+.cart-total{
+  display:flex;justify-content:space-between;align-items:baseline;
+  margin-bottom:16px;
+}
+.cart-total-label{font-size:13px;color:var(--teks-abu);}
+.cart-total-angka{
+  font-family:'Cormorant Garamond',serif;
+  font-size:28px;font-weight:700;color:var(--emas);
+}
+.btn-checkout-wa{
+  width:100%;padding:17px;
+  background:#25D366;color:white;
+  border:none;border-radius:100px;
+  font-size:13px;font-weight:700;
+  letter-spacing:1px;text-transform:uppercase;
+  font-family:'Nunito',sans-serif;
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  transition:all .3s;cursor:pointer;
+}
+.btn-checkout-wa:hover{background:#20BA5A;transform:translateY(-2px);}
+
+/* ══════════════════════════════
+   MODAL IDENTITAS
+══════════════════════════════ */
+.overlay-modal{
+  position:fixed;inset:0;
+  background:rgba(0,0,0,.65);backdrop-filter:blur(8px);
+  z-index:900;opacity:0;pointer-events:none;
+  transition:opacity .3s;
+  display:flex;align-items:center;justify-content:center;padding:20px;
+}
+.overlay-modal.buka{opacity:1;pointer-events:all;}
+.modal-box{
+  background:var(--putih);
+  width:100%;max-width:480px;
+  border-radius:20px;overflow:hidden;
+  transform:translateY(30px) scale(.96);
+  transition:transform .35s cubic-bezier(.4,0,.2,1);
+  box-shadow:0 40px 100px rgba(0,0,0,.3);
+}
+.overlay-modal.buka .modal-box{transform:translateY(0) scale(1);}
+.modal-kepala{
+  background:var(--hijau-tua);padding:28px 28px 24px;
+  position:relative;
+}
+.modal-kepala-deko{
+  position:absolute;top:0;right:0;bottom:0;width:120px;
+  background:linear-gradient(135deg,transparent,rgba(201,151,58,.1));
+  pointer-events:none;
+}
+.modal-kepala h3{
+  font-family:'Cormorant Garamond',serif;
+  font-size:24px;font-weight:700;color:var(--emas-muda);
+  margin-bottom:4px;
+}
+.modal-kepala p{font-size:12px;color:rgba(253,246,236,.5);}
+.modal-tutup{
+  position:absolute;top:20px;right:22px;
+  background:none;border:none;font-size:22px;
+  color:rgba(253,246,236,.4);cursor:pointer;transition:color .2s;
+}
+.modal-tutup:hover{color:var(--emas);}
+.modal-body{padding:26px 28px;}
+.form-grup{margin-bottom:18px;}
+.form-label{
+  display:block;font-size:11px;font-weight:700;
+  letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--hijau);margin-bottom:8px;
+}
+.form-input{
+  width:100%;padding:13px 16px;
+  background:var(--krem);
+  border:1.5px solid rgba(201,151,58,.2);
+  border-radius:10px;
+  color:var(--teks);font-family:'Nunito',sans-serif;
+  font-size:14px;outline:none;transition:border-color .2s;
+  -webkit-appearance:none;
+}
+.form-input:focus{border-color:var(--emas);}
+.form-input::placeholder{color:rgba(120,100,80,.4);}
+.form-textarea{
+  width:100%;padding:13px 16px;
+  background:var(--krem);
+  border:1.5px solid rgba(201,151,58,.2);
+  border-radius:10px;
+  color:var(--teks);font-family:'Nunito',sans-serif;
+  font-size:14px;outline:none;transition:border-color .2s;
+  resize:vertical;min-height:88px;line-height:1.6;
+}
+.form-textarea:focus{border-color:var(--emas);}
+.form-textarea::placeholder{color:rgba(120,100,80,.4);}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+/* Ringkasan */
+.ringkasan-box{
+  background:var(--krem);border:1px solid rgba(201,151,58,.15);
+  border-radius:12px;padding:16px;margin-bottom:18px;
+  max-height:150px;overflow-y:auto;
+}
+.ringkasan-row{
+  display:flex;justify-content:space-between;
+  font-size:12px;padding:5px 0;
+  border-bottom:1px solid rgba(201,151,58,.08);
+  color:var(--teks-abu);
+}
+.ringkasan-row:last-child{border:none;}
+.ringkasan-total-row{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-top:8px;padding-top:8px;
+  border-top:1.5px solid rgba(201,151,58,.2);
+}
+.ringkasan-total-row span{font-size:12px;color:var(--teks-abu);}
+.ringkasan-total-angka{
+  font-family:'Cormorant Garamond',serif;
+  font-size:22px;font-weight:700;color:var(--emas);
+}
+.btn-kirim-wa{
+  width:100%;padding:17px;
+  background:#25D366;color:white;
+  border:none;border-radius:100px;
+  font-size:13px;font-weight:700;
+  letter-spacing:1px;text-transform:uppercase;
+  font-family:'Nunito',sans-serif;
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  transition:all .3s;cursor:pointer;
+}
+.btn-kirim-wa:hover{background:#20BA5A;}
+.modal-note{font-size:11px;color:rgba(120,100,80,.5);text-align:center;margin-top:12px;line-height:1.6;}
+.modal-id-row{
+  display:flex;align-items:center;gap:10px;
+  background:rgba(201,151,58,.08);border-radius:10px;
+  padding:10px 16px;margin-bottom:18px;
+}
+.modal-id-label{font-size:10px;color:var(--teks-abu);letter-spacing:1px;}
+.modal-id-val{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:700;color:var(--emas);}
+
+/* ══════════════════════════════
+   MOBILE BOTTOM BAR
+══════════════════════════════ */
+.mobile-bar{
+  display:none;
+  position:fixed;
+  bottom:0;left:0;right:0;
+  z-index:480;
+  background:rgba(26,58,42,.97);
+  border-top:1px solid rgba(201,151,58,.15);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  padding:6px 0;
+  padding-bottom:max(6px, env(safe-area-inset-bottom));
+}
+.mobile-bar-inner{
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+  max-width:480px;
+  margin:0 auto;
+}
+.mbar-item{
+  display:flex;flex-direction:column;align-items:center;gap:3px;
+  background:none;border:none;cursor:pointer;
+  color:rgba(253,246,236,.4);
+  font-size:9px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;
+  text-decoration:none;padding:4px 8px;transition:color .2s;
+  font-family:'Nunito',sans-serif;
+}
+.mbar-item .ico{font-size:20px;}
+.mbar-item:hover,.mbar-item.aktif{color:var(--emas-muda);}
+.mbar-cart-wrap{
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+.mbar-badge{
+  position:absolute;top:-2px;right:-2px;
+  background:var(--emas);color:var(--hijau-tua);
+  font-size:8px;font-weight:800;
+  width:16px;height:16px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  pointer-events:none;
+}
+
+/* ══════════════════════════════
+   TOAST
+══════════════════════════════ */
+.toast{
+  position:fixed;bottom:28px;left:50%;
+  transform:translateX(-50%) translateY(80px);
+  background:var(--hijau-tua);
+  border:1px solid rgba(201,151,58,.3);
+  color:var(--krem);padding:13px 26px;
+  font-size:13px;z-index:600;border-radius:100px;
+  white-space:nowrap;
+  transition:transform .4s cubic-bezier(.4,0,.2,1), opacity .4s;
+  box-shadow:0 8px 30px rgba(0,0,0,.2);
+  opacity:0;
+  pointer-events:none;
+}
+.toast.tampil{transform:translateX(-50%) translateY(0);opacity:1;}
+
+/* ══════════════════════════════
+   ANIMASI
+══════════════════════════════ */
+/* ══════════════════════════════
+   RIWAYAT PESANAN
+══════════════════════════════ */
+.overlay-riwayat{
+  position:fixed;inset:0;background:rgba(0,0,0,.6);
+  backdrop-filter:blur(6px);z-index:850;
+  opacity:0;pointer-events:none;transition:opacity .3s;
+}
+.overlay-riwayat.buka{opacity:1;pointer-events:all;}
+.panel-riwayat{
+  position:fixed;top:0;right:-520px;width:500px;
+  height:100vh;background:var(--putih);
+  border-left:1px solid rgba(201,151,58,.2);
+  z-index:860;transition:right .42s cubic-bezier(.4,0,.2,1);
+  display:flex;flex-direction:column;
+}
+.panel-riwayat.buka{right:0;}
+.riwayat-kepala{
+  padding:24px 24px 20px;
+  background:var(--hijau-tua);
+  display:flex;justify-content:space-between;align-items:center;
+  flex-shrink:0;
+}
+.riwayat-kepala h3{
+  font-family:'Cormorant Garamond',serif;
+  font-size:22px;font-weight:700;color:var(--emas-muda);
+}
+.riwayat-kepala-aksi{display:flex;align-items:center;gap:10px;}
+.btn-hapus-semua{
+  background:rgba(231,76,60,.15);color:#E74C3C;
+  border:1px solid rgba(231,76,60,.25);
+  padding:6px 12px;border-radius:100px;
+  font-size:10px;font-weight:700;letter-spacing:.5px;
+  font-family:'Nunito',sans-serif;cursor:pointer;transition:all .2s;
+}
+.btn-hapus-semua:hover{background:rgba(231,76,60,.25);}
+.tutup-riwayat{
+  background:none;border:none;font-size:26px;
+  color:rgba(253,246,236,.5);cursor:pointer;transition:color .2s;
+}
+.tutup-riwayat:hover{color:var(--emas-muda);}
+.riwayat-isi{flex:1;overflow-y:auto;padding:16px 20px;}
+.riwayat-kosong{
+  height:260px;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;text-align:center;gap:10px;
+}
+.riwayat-kosong span{font-size:52px;}
+.riwayat-kosong p{font-size:13px;color:var(--teks-abu);line-height:1.7;}
+.riwayat-item{
+  background:var(--krem);
+  border:1px solid rgba(201,151,58,.15);
+  border-radius:14px;padding:16px 18px;
+  margin-bottom:12px;
+  transition:box-shadow .2s;
+}
+.riwayat-item:hover{box-shadow:0 4px 16px rgba(45,90,61,.1);}
+.riwayat-item-atas{
+  display:flex;justify-content:space-between;align-items:flex-start;
+  margin-bottom:10px;
+}
+.riwayat-id{
+  font-family:'Cormorant Garamond',serif;
+  font-size:17px;font-weight:700;color:var(--hijau-tua);
+}
+.riwayat-status{
+  font-size:9px;font-weight:800;letter-spacing:1px;
+  text-transform:uppercase;padding:3px 10px;border-radius:100px;
+  background:rgba(37,211,102,.15);color:#1a9e50;
+}
+.riwayat-meta{
+  font-size:11px;color:var(--teks-abu);margin-bottom:10px;
+  display:flex;flex-wrap:wrap;gap:6px;
+}
+.riwayat-meta span{
+  display:flex;align-items:center;gap:4px;
+}
+.riwayat-produk-list{
+  border-top:1px solid rgba(201,151,58,.12);
+  padding-top:10px;margin-bottom:10px;
+}
+.riwayat-produk-row{
+  display:flex;justify-content:space-between;
+  font-size:12px;color:var(--teks-abu);padding:3px 0;
+}
+.riwayat-total-row{
+  display:flex;justify-content:space-between;align-items:center;
+  border-top:1px solid rgba(201,151,58,.15);
+  padding-top:10px;margin-top:4px;
+}
+.riwayat-total-label{font-size:11px;color:var(--teks-abu);}
+.riwayat-total-val{
+  font-family:'Cormorant Garamond',serif;
+  font-size:20px;font-weight:700;color:var(--emas);
+}
+.riwayat-aksi{display:flex;gap:8px;margin-top:12px;}
+.btn-pesan-lagi{
+  flex:1;padding:10px;
+  background:var(--hijau);color:white;
+  border:none;border-radius:100px;
+  font-size:11px;font-weight:700;letter-spacing:.5px;
+  font-family:'Nunito',sans-serif;cursor:pointer;
+  transition:background .2s;touch-action:manipulation;
+}
+.btn-pesan-lagi:hover{background:var(--hijau-muda);}
+.btn-hapus-item-riwayat{
+  padding:10px 14px;
+  background:transparent;color:rgba(120,100,80,.4);
+  border:1px solid rgba(120,100,80,.15);
+  border-radius:100px;font-size:12px;cursor:pointer;
+  transition:all .2s;touch-action:manipulation;
+}
+.btn-hapus-item-riwayat:hover{color:#E74C3C;border-color:rgba(231,76,60,.3);}
+
+/* Tombol riwayat di cart header */
+.btn-riwayat-cart{
+  background:rgba(201,151,58,.15);color:var(--emas-muda);
+  border:1px solid rgba(201,151,58,.25);
+  padding:6px 12px;border-radius:100px;
+  font-size:10px;font-weight:700;letter-spacing:.5px;
+  font-family:'Nunito',sans-serif;cursor:pointer;transition:all .2s;
+  display:flex;align-items:center;gap:5px;
+}
+.btn-riwayat-cart:hover{background:rgba(201,151,58,.25);}
+.riwayat-cnt{
+  background:var(--emas);color:var(--hijau-tua);
+  font-size:9px;font-weight:800;
+  width:16px;height:16px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+}
+
+/* Mobile */
+@media(max-width:640px){
+  .panel-riwayat{width:100%;right:-100%;border-left:none;height:100dvh;}
+  .panel-riwayat.buka{right:0;}
+  .riwayat-kepala{padding:16px 16px 14px;}
+  .riwayat-isi{padding:12px 14px;}
+}
+.pwa-banner{
+  position:fixed;bottom:80px;left:12px;right:12px;
+  background:var(--hijau-tua);
+  border:1px solid rgba(201,151,58,.35);
+  border-radius:16px;
+  padding:14px 16px;
+  display:flex;align-items:center;gap:12px;
+  z-index:1200;
+  box-shadow:0 8px 32px rgba(0,0,0,.35);
+  transform:translateY(200px);
+  transition:transform .45s cubic-bezier(.4,0,.2,1);
+  pointer-events:none;opacity:0;
+}
+.pwa-banner.tampil{
+  transform:translateY(0);
+  pointer-events:all;opacity:1;
+}
+.pwa-banner-icon{font-size:36px;flex-shrink:0;}
+.pwa-banner-teks{flex:1;}
+.pwa-banner-judul{
+  font-family:'Cormorant Garamond',serif;
+  font-size:16px;font-weight:700;color:var(--emas-muda);
+  margin-bottom:2px;
+}
+.pwa-banner-sub{font-size:11px;color:rgba(253,246,236,.5);line-height:1.4;}
+.pwa-banner-aksi{display:flex;gap:8px;flex-shrink:0;}
+.pwa-install-btn{
+  background:var(--emas);color:var(--hijau-tua);
+  border:none;padding:9px 16px;border-radius:100px;
+  font-size:12px;font-weight:800;letter-spacing:.5px;
+  font-family:'Nunito',sans-serif;cursor:pointer;
+  white-space:nowrap;touch-action:manipulation;
+  transition:background .2s;
+}
+.pwa-install-btn:hover{background:var(--emas-muda);}
+.pwa-close-btn{
+  background:rgba(253,246,236,.08);color:rgba(253,246,236,.5);
+  border:1px solid rgba(253,246,236,.1);
+  width:32px;height:32px;border-radius:50%;
+  font-size:16px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  touch-action:manipulation;transition:all .2s;
+  font-family:'Nunito',sans-serif;
+}
+.pwa-close-btn:hover{background:rgba(253,246,236,.15);color:var(--krem);}
+
+/* Desktop: banner di pojok kanan bawah */
+@media(min-width:641px){
+  .pwa-banner{
+    bottom:28px;left:auto;right:28px;
+    max-width:340px;
+  }
+}
+
+@keyframes naik{from{opacity:0;transform:translateY(26px);}to{opacity:1;transform:translateY(0);}}
+@keyframes muncul{from{opacity:0;}to{opacity:1;}}
+@keyframes jalan{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+@keyframes mengambang{0%,100%{transform:translateY(0);}50%{transform:translateY(-12px);}}
+@keyframes denyut{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.5;transform:scale(.7);}}
+@keyframes putar{from{transform:rotate(0);}to{transform:rotate(360deg);}}
+.reveal{
+  opacity:0;transform:translateY(36px);
+  transition:opacity .8s ease,transform .8s ease;
+}
+.reveal.terlihat{opacity:1;transform:translateY(0);}
+
+/* ══════════════════════════════
+   RESPONSIVE — TABLET
+══════════════════════════════ */
+@media(max-width:1024px){
+  nav,nav.padat{padding:14px 28px;}
+  .nav-links{display:none !important;}
+  .hamburger{display:flex !important;}
+  .hero{grid-template-columns:1fr;padding:0;}
+  .hero-kiri{padding:120px 28px 40px;}
+  .hero-kanan{display:none !important;}
+  .tentang{grid-template-columns:1fr;padding:70px 28px;gap:40px;}
+  .produk{padding:70px 28px;}
+  .produk-grid{grid-template-columns:1fr 1fr;}
+  .hampers{padding:70px 28px;}
+  .hampers-grid{grid-template-columns:1fr;}
+  .promo{grid-template-columns:1fr;padding:70px 28px;gap:40px;}
+  .testi{padding:70px 28px;}
+  .testi-grid{grid-template-columns:1fr;}
+  .footer-atas{grid-template-columns:1fr 1fr;padding:60px 28px 40px;}
+  .footer-bawah{flex-direction:column;gap:8px;padding:18px 28px;text-align:center;}
+  .sidebar-cart{width:100%;right:-100%;}
+  .sidebar-cart.buka{right:0;}
+}
+
+/* ══════════════════════════════
+   RESPONSIVE — MOBILE
+══════════════════════════════ */
+@media(max-width:640px){
+  html,body{overflow-x:hidden;}
+  body{padding-bottom:72px;}
+
+  nav,nav.padat{padding:10px 16px;}
+  .nav-links{display:none !important;}
+  .hamburger{display:flex !important;}
+  .btn-cart-nav .teks-nav{display:none;}
+  .btn-cart-nav{padding:8px 12px;}
+
+  .mobile-bar{display:block !important;}
+  .toast{bottom:80px;}
+
+  .hero{min-height:100svh;}
+  .hero-kiri{padding:90px 20px 50px;}
+  .hero-judul{font-size:clamp(38px,10vw,58px);}
+  .hero-tagline{font-size:clamp(14px,3.8vw,20px);}
+  .hero-desc{font-size:13px;}
+  .hero-tombol{flex-direction:column;gap:10px;}
+  .btn-primer,.btn-sekunder{text-align:center;padding:13px 24px;font-size:12px;width:100%;display:block;box-sizing:border-box;}
+  .hero-stats{gap:16px;flex-wrap:wrap;}
+  .stat-angka{font-size:24px;}
+
+  .tentang{padding:60px 20px;gap:32px;}
+  .tentang-foto-kol{grid-template-rows:180px 130px;}
+  .judul-seksi{font-size:clamp(26px,7vw,38px);}
+  .keunggulan-grid{grid-template-columns:1fr;}
+
+  .produk{padding:60px 20px;}
+  .produk-header{flex-direction:column;align-items:flex-start;gap:16px;}
+  .produk-grid{grid-template-columns:1fr;}
+  .kue-overlay{display:none !important;}
+  .btn-tambah-mobile{display:block !important;}
+  .filter-row{flex-wrap:wrap;gap:8px;}
+  .ftab{padding:8px 14px;font-size:10px;}
+
+  .hampers{padding:60px 20px;}
+  .hampers-grid{grid-template-columns:1fr;}
+
+  .promo{padding:60px 20px;grid-template-columns:1fr;}
+  .promo-visual{height:220px;}
+  .promo::after{display:none;}
+
+  .testi{padding:60px 20px;}
+  .testi-kartu{padding:22px 18px;}
+
+  .footer-atas{grid-template-columns:1fr;gap:28px;padding:50px 20px 28px;}
+  .footer-bawah{flex-direction:column;gap:6px;padding:14px 20px;text-align:center;}
+
+  .sidebar-cart{width:100%;right:-100%;border-left:none;height:100dvh;}
+  .sidebar-cart.buka{right:0;}
+  .cart-kepala{padding:16px 18px;}
+  .cart-isi{padding:12px 16px;}
+  .cart-kaki{padding:14px 16px;}
+
+  .overlay-modal{align-items:flex-end;padding:0;}
+  .modal-box{border-radius:20px 20px 0 0;max-width:100%;width:100%;max-height:92dvh;overflow-y:auto;-webkit-overflow-scrolling:touch;}
+  .modal-kepala{padding:20px 20px 16px;}
+  .modal-body{padding:18px 20px 32px;}
+  .form-row{grid-template-columns:1fr;}
+
+  .mbar-item{min-height:44px;}
+  .qty-btn{width:44px;height:44px;font-size:18px;}
+  .btn-checkout-wa,.btn-kirim-wa{min-height:52px;}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════ DRAWER OVERLAY ══════ -->
+<div class="drawer-overlay" id="drawerOverlay" onclick="tutupDrawer()"></div>
+<div class="nav-drawer" id="navDrawer">
+  <div class="drawer-top">
+    <div class="drawer-logo">🌙 Mama Kiki</div>
+    <div class="drawer-sub">Kue Lebaran Homemade</div>
+  </div>
+  <ul class="drawer-links">
+    <li><a href="#beranda" onclick="tutupDrawer()">🏠 Beranda</a></li>
+    <li><a href="#tentang" onclick="tutupDrawer()">💛 Tentang Kami</a></li>
+    <li><a href="#kue" onclick="tutupDrawer()">🍪 Kue Lebaran</a></li>
+    <li><a href="#hampers" onclick="tutupDrawer()">🎁 Paket Hampers</a></li>
+    <li><a href="#ulasan" onclick="tutupDrawer()">⭐ Ulasan</a></li>
+  </ul>
+  <div class="drawer-footer">
+    <p><strong>Mama Kiki</strong><br>Setiap hari: 08.00 – 20.00 WIB<br>+62 812-1093-5249</p>
+  </div>
+</div>
+
+<!-- ══════ CART OVERLAY ══════ -->
+<div class="overlay-cart" id="overlayCart"></div>
+
+<!-- ══════ CART SIDEBAR ══════ -->
+<div class="sidebar-cart" id="sidebarCart">
+  <div class="cart-kepala">
+    <h3>🛒 Keranjang Kue</h3>
+    <div style="display:flex;align-items:center;gap:10px;">
+      <button class="btn-riwayat-cart" onclick="bukaRiwayat()">
+        📋 Riwayat <span class="riwayat-cnt" id="riwayatCnt">0</span>
+      </button>
+      <button class="tutup-cart" onclick="tutupCart()">×</button>
+    </div>
+  </div>
+  <div class="cart-isi" id="isiCart">
+    <div class="cart-kosong">
+      <span>🍪</span>
+      <p>Keranjangmu masih kosong nih~<br>Yuk pilih kue lebarannya!</p>
+    </div>
+  </div>
+  <div class="cart-kaki">
+    <div class="cart-total">
+      <span class="cart-total-label">Total Belanja</span>
+      <span class="cart-total-angka" id="totalCart">Rp 0</span>
+    </div>
+    <button class="btn-checkout-wa" onclick="bukaModal()">
+      💬 Pesan via WhatsApp
+    </button>
+  </div>
+</div>
+
+<!-- ══════ MODAL IDENTITAS ══════ -->
+<div class="overlay-modal" id="overlayModal">
+  <div class="modal-box">
+    <div class="modal-kepala">
+      <div class="modal-kepala-deko"></div>
+      <h3>Detail Pesanan 🍪</h3>
+      <p>Lengkapi data agar pesanan bisa kami proses</p>
+      <button class="modal-tutup" onclick="tutupModal()">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="ringkasan-box" id="ringkasanModal"></div>
+      <div class="modal-id-row">
+        <div>
+          <div class="modal-id-label">ID PESANAN</div>
+          <div class="modal-id-val" id="idPesanan">MK-000000</div>
+        </div>
+        <span style="font-size:24px;margin-left:auto;">🏷️</span>
+      </div>
+      <div class="form-row">
+        <div class="form-grup">
+          <label class="form-label" for="inpNama">Nama Pemesan</label>
+          <input class="form-input" type="text" id="inpNama" placeholder="Nama lengkap kamu" autocomplete="name">
+        </div>
+        <div class="form-grup">
+          <label class="form-label" for="inpHp">No. HP</label>
+          <input class="form-input" type="tel" id="inpHp" placeholder="08xxxxxxxxxx" autocomplete="tel">
+        </div>
+      </div>
+      <div class="form-grup">
+        <label class="form-label" for="inpAlamat">📍 Alamat Pengiriman</label>
+        <textarea class="form-textarea" id="inpAlamat" placeholder="Contoh: Jl. Melati No. 12, RT 03/RW 05, Kelurahan Tebet, Jakarta Selatan, 12810"></textarea>
+      </div>
+      <div class="form-grup">
+        <label class="form-label" for="inpCatatan">Catatan (opsional)</label>
+        <input class="form-input" type="text" id="inpCatatan" placeholder="Mis: tanpa gula, tambah topping...">
+      </div>
+      <button class="btn-kirim-wa" onclick="kirimWA()">
+        <span>💬</span> Kirim ke WhatsApp Mama Kiki
+      </button>
+      <p class="modal-note">Pesanan akan diteruskan ke WhatsApp kami.<br>Staff kami akan segera membalas pesananmu 🌙</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════ NAVBAR ══════ -->
+<nav id="navbar">
+  <div class="nav-brand">
+    <div class="nav-brand-icon">🌙</div>
+    <div class="nav-logo-teks">
+      <span class="nav-nama">Mama Kiki</span>
+      <span class="nav-sub">Kue Lebaran Homemade</span>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#beranda">Beranda</a></li>
+    <li><a href="#tentang">Tentang</a></li>
+    <li><a href="#kue">Kue</a></li>
+    <li><a href="#hampers">Hampers</a></li>
+    <li><a href="#ulasan">Ulasan</a></li>
+  </ul>
+  <div class="nav-kanan">
+    <button class="btn-cart-nav" onclick="bukaCart()">
+      🛒 <span class="teks-nav">Keranjang</span>
+      <span class="cnt" id="badgeNav">0</span>
+    </button>
+    <button class="hamburger" id="hamburger" onclick="toggleDrawer()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ══════ HERO ══════ -->
+<section class="hero" id="beranda">
+  <div class="hero-ornamen" style="width:600px;height:600px;top:-200px;left:-200px;"></div>
+  <div class="hero-ornamen" style="width:300px;height:300px;bottom:-100px;left:200px;"></div>
+  <div class="hero-dekor-bulan">🌙</div>
+
+  <div class="hero-kiri">
+    <div class="hero-badge">
+      <div class="hero-badge-dot"></div>
+      <span>✦ Menerima Pesanan Lebaran 2025</span>
+    </div>
+    <h1 class="hero-judul">
+      Kue Kering
+      <em>Mama Kiki</em>
+    </h1>
+    <p class="hero-tagline">Resep turun-temurun, dibuat dengan cinta 💛</p>
+    <p class="hero-desc">
+      Dari dapur mama untuk meja lebaranmu — nastar, kastengel, kue kacang, dan kue kering pilihan
+      lainnya. Dibuat fresh, tanpa pengawet, langsung dari tangan terampil Mama Kiki.
+    </p>
+    <div class="hero-tombol">
+      <a href="#kue" class="btn-primer">🍪 Pilih Kue Sekarang</a>
+      <a href="#hampers" class="btn-sekunder">🎁 Lihat Hampers</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-angka">12+</div>
+        <div class="stat-label">Varian Kue</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-angka">8th</div>
+        <div class="stat-label">Berpengalaman</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-angka">5k+</div>
+        <div class="stat-label">Pelanggan Setia</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-kanan">
+    <div class="hero-gambar-wrap">
+      <div class="hero-gambar-bulat"></div>
+      <img class="hero-img-utama"
+        src="https://cdn1-production-images-kly.akamaized.net/QsiZ9-c1CbP1Qv_AG51NWuMrfz8=/1280x720/smart/filters:quality(75):strip_icc()/kly-media-production/medias/1636157/original/095166500_1498802802-10__1_.jpg"
+        alt="Kue Lebaran Mama Kiki"
+        onerror="this.src='https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=700&q=80'">
+      <div class="hero-kartu-float kiri">
+        <div class="float-label">Pesan Sekarang</div>
+        <div class="float-val">Rp 75k</div>
+        <div class="float-sub">Nastar Premium / toples</div>
+      </div>
+      <div class="hero-kartu-float kanan">
+        <div class="float-label">Rating Pelanggan</div>
+        <div class="float-val">4.9 ★</div>
+        <div class="float-sub">dari 500+ ulasan</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ STRIP ══════ -->
+<div class="strip">
+  <div class="strip-dalam" id="stripEl">
+    <div class="strip-item">Nastar Nanas</div>
+    <div class="strip-item">Kastengel Keju</div>
+    <div class="strip-item">Kue Kacang</div>
+    <div class="strip-item">Putri Salju</div>
+    <div class="strip-item">Semprit Susu</div>
+    <div class="strip-item">Kue Coklat</div>
+    <div class="strip-item">Lidah Kucing</div>
+    <div class="strip-item">Kue Sagu Keju</div>
+    <div class="strip-item">Nastar Nanas</div>
+    <div class="strip-item">Kastengel Keju</div>
+    <div class="strip-item">Kue Kacang</div>
+    <div class="strip-item">Putri Salju</div>
+    <div class="strip-item">Semprit Susu</div>
+    <div class="strip-item">Kue Coklat</div>
+    <div class="strip-item">Lidah Kucing</div>
+    <div class="strip-item">Kue Sagu Keju</div>
+  </div>
+</div>
+
+<!-- ══════ TENTANG ══════ -->
+<section class="tentang" id="tentang">
+  <div class="tentang-foto-kol reveal">
+    <div class="tfoto">
+      <img src="https://img.freepik.com/premium-photo/kue-putri-salju-snow-white-cookies-with-crescent-shaped-made-from-flour-sugar-butter_583400-2980.jpg" alt="Baking cookies" onerror="this.src='https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=400'">
+    </div>
+    <div class="tfoto">
+      <img src="https://cdn.getswift.asia/unsafe/0x0/filters:quality(85)/https%3A%2F%2Flh7-us.googleusercontent.com%2FBoLe4JAa0jC4dL5SMrJX2T4Q0I4FAP3mGLEUR4XWZirqprODPpzTtXd6obIPnv46gRrAvdiaynzeGLAiP7aojdtcWh8o_F_8CXQIPb7GudtcE29BRc_FYxBB1zERXdu1IoIanSCqwGYujDOCJcNTn3E" alt="Cookies tin" onerror="this.src='https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=400'">
+    </div>
+    <div class="tfoto">
+      <img src="https://img.freepik.com/premium-photo/kue-sagu-keju-cheese-sago-cookies-is-indonesian-traditional-cookies-made-from-combination-sago_431906-5991.jpg" alt="Assorted cookies" onerror="this.src='https://images.unsplash.com/photo-1542010589005-d1eacc3918f2?w=400'">
+    </div>
+  </div>
+  <div class="reveal">
+    <div class="label-seksi"><div class="label-garis"></div><span>Tentang Mama Kiki</span></div>
+    <h2 class="judul-seksi">Cinta di Setiap<br><em>Loyang Kue</em></h2>
+    <p class="teks-isi">
+      Mama Kiki sudah membuat kue lebaran sejak tahun 2016 — berawal dari hobi dan 
+      permintaan keluarga yang terus bertambah. Kini setiap jelang lebaran, ratusan 
+      toples kue kering buatan tangan kami hadir di meja-meja seluruh Indonesia.
+    </p>
+    <div class="keunggulan-grid">
+      <div class="keung-item">
+        <span class="keung-icon">🥚</span>
+        <div>
+          <div class="keung-nama">Bahan Premium</div>
+          <div class="keung-teks">Butter asli, telur ayam kampung, keju pilihan</div>
+        </div>
+      </div>
+      <div class="keung-item">
+        <span class="keung-icon">🚫</span>
+        <div>
+          <div class="keung-nama">Tanpa Pengawet</div>
+          <div class="keung-teks">100% alami, aman untuk seluruh keluarga</div>
+        </div>
+      </div>
+      <div class="keung-item">
+        <span class="keung-icon">🫙</span>
+        <div>
+          <div class="keung-nama">Toples Cantik</div>
+          <div class="keung-teks">Dikemas rapi, siap jadi hadiah lebaran</div>
+        </div>
+      </div>
+      <div class="keung-item">
+        <span class="keung-icon">🚚</span>
+        <div>
+          <div class="keung-nama">Antar ke Rumah</div>
+          <div class="keung-teks">Pengiriman aman ke seluruh Indonesia</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ PRODUK / KUE ══════ -->
+<section class="produk" id="kue">
+  <div class="produk-header reveal">
+    <div class="produk-header-kiri">
+      <div class="label-seksi"><div class="label-garis"></div><span>Menu Kue</span></div>
+      <h2 class="judul-seksi">Kue Lebaran<br><em>Pilihan Mama</em></h2>
+    </div>
+    <div class="filter-row">
+      <button class="ftab aktif" onclick="filterKue('semua',this)">Semua</button>
+      <button class="ftab" onclick="filterKue('klasik',this)">Klasik</button>
+      <button class="ftab" onclick="filterKue('keju',this)">Keju</button>
+      <button class="ftab" onclick="filterKue('coklat',this)">Coklat</button>
+    </div>
+  </div>
+  <div class="produk-grid" id="kueGrid"></div>
+</section>
+
+<!-- ══════ PAKET HAMPERS ══════ -->
+<section class="hampers" id="hampers">
+  <div class="hampers-header reveal">
+    <div class="label-seksi" style="justify-content:center"><div class="label-garis"></div><span style="color:var(--emas)">Paket Spesial</span></div>
+    <h2 class="judul-seksi" style="color:var(--krem);text-align:center">Hampers Lebaran<br><em>Mama Kiki</em></h2>
+    <p class="teks-isi" style="text-align:center">Hadiah lebaran yang berkesan — dikemas dengan cantik </p>
+  </div>
+  <div class="hampers-grid">
+    <div class="hampers-kartu reveal">
+      <span class="hampers-icon">🎁</span>
+      <div class="hampers-nama">Paket Mini</div>
+      <div class="hampers-isi">2 toples kue pilihan<br>Nastar + Kue Kacang<br>Box cantik & kartu ucapan</div>
+      <div class="hampers-harga">Rp 150.000 <span class="satuan">/ paket</span></div>
+      <button class="btn-pilih-hampers" onclick="tambahHampers('Hampers Mini',150000)">Pilih Paket Ini</button>
+    </div>
+    <div class="hampers-kartu unggulan reveal">
+      <span class="hampers-badge-unggulan">⭐ Terlaris</span>
+      <span class="hampers-icon">🎀</span>
+      <div class="hampers-nama">Paket Spesial</div>
+      <div class="hampers-isi">4 toples kue pilihan<br>Nastar + Kastengel + Kue Kacang + Putri Salju<br>Box premium, pita, & kartu</div>
+      <div class="hampers-harga">Rp 300.000 <span class="satuan">/ paket</span></div>
+      <button class="btn-pilih-hampers" onclick="tambahHampers('Hampers Spesial',300000)">Pilih Paket Ini</button>
+    </div>
+    <div class="hampers-kartu reveal">
+      <span class="hampers-icon">👑</span>
+      <div class="hampers-nama">Paket Royal</div>
+      <div class="hampers-isi">6 toples kue premium<br>Pilihan bebas semua varian<br>Box kayu ukir + pita emas + kartu mewah</div>
+      <div class="hampers-harga">Rp 420.000 <span class="satuan">/ paket</span></div>
+      <button class="btn-pilih-hampers" onclick="tambahHampers('Hampers Royal',420000)">Pilih Paket Ini</button>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ PROMO ══════ -->
+<section class="promo">
+  <div class="promo-visual reveal">
+    <img src="https://images.unsplash.com/photo-1486427944299-d1955d23e34d?w=700&q=80"
+      alt="Kue lebaran promo" onerror="this.src='https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=400'">
+    <div class="promo-diskon-badge">
+      <div class="promo-persen">20%</div>
+      <div class="promo-keterangan">Early Bird</div>
+    </div>
+  </div>
+  <div class="promo-konten reveal">
+    <div class="label-seksi"><div class="label-garis"></div><span>Promo Spesial</span></div>
+    <h2 class="judul-seksi">Pesan Lebih Awal,<br>Hemat <em>Lebih Banyak</em></h2>
+    <p class="teks-isi">Dapatkan diskon spesial untuk pemesanan lebih dari 3 toples atau pemesanan sebelum H-14 lebaran!</p>
+    <ul class="promo-list">
+      <li>Diskon 5% untuk pemesanan diatas 10+ toples</li>
+      <li>Gratis ongkir area Office</li>
+      <li>Bonus kartu ucapan eksklusif</li>
+      <li>Custom topper nama gratis</li>
+    </ul>
+    <div class="promo-kode">
+      <div>
+        <div class="promo-kode-teks">KODE DISKON</div>
+        <div class="promo-kode-val">LEBARAN25</div>
+      </div>
+      <button class="copy-btn" onclick="salinKode()">Salin</button>
+    </div>
+    <a href="#kue" class="btn-primer" style="text-decoration:none">🍪 Belanja Sekarang</a>
+  </div>
+</section>
+
+<!-- ══════ TESTIMONI ══════ -->
+<section class="testi" id="ulasan">
+  <div class="testi-header reveal">
+    <div class="label-seksi"><div class="label-garis"></div><span>Ulasan Pelanggan</span></div>
+    <h2 class="judul-seksi">Kata Mereka<br>tentang <em>Mama Kiki</em></h2>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-kartu reveal">
+      <div class="testi-kutipan">"</div>
+      <div class="testi-bintang">★★★★★</div>
+      <p class="testi-teks">Nastarnya ENAK BANGET! Kulit luarnya renyah, isinya nanas asli nggak terlalu manis. Keluarga udah pesan 5 toples setiap tahun. Wajib beli kalau mau lebaran!</p>
+      <div class="testi-profil">
+        <div class="testi-avatar">👩</div>
+        <div>
+          <div class="testi-nama">Rina Wulandari</div>
+          <div class="testi-kota">Pelanggan Setia · Jakarta Selatan</div>
+          <div class="testi-produk">Nastar Premium</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-kartu reveal">
+      <div class="testi-kutipan">"</div>
+      <div class="testi-bintang">★★★★★</div>
+      <p class="testi-teks">Hampers-nya cantik banget! Pas buat hadiah ke rekan kerja. Kastengelnya juga juara, gurih dan keju-nya terasa banget. Packaging-nya rapi dan elegan, suka!</p>
+      <div class="testi-profil">
+        <div class="testi-avatar">👨</div>
+        <div>
+          <div class="testi-nama">Budi Hermawan</div>
+          <div class="testi-kota">Corporate · Bekasi</div>
+          <div class="testi-produk">Hampers Spesial</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-kartu reveal">
+      <div class="testi-kutipan">"</div>
+      <div class="testi-bintang">★★★★★</div>
+      <p class="testi-teks">Putri Salju-nya lembut di mulut, manisnya pas banget! Kue kacangnya juga crispy. Sudah langganan 4 tahun dan kualitasnya konsisten. Terima kasih Mama Kiki!</p>
+      <div class="testi-profil">
+        <div class="testi-avatar">👩</div>
+        <div>
+          <div class="testi-nama">Siti Rahayu</div>
+          <div class="testi-kota">Ibu Rumah Tangga · Depok</div>
+          <div class="testi-produk">Putri Salju & Kue Kacang</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ FOOTER ══════ -->
+<footer>
+  <div class="footer-atas">
+    <div class="footer-brand">
+      <span class="footer-brand-logo">🌙 Mama Kiki</span>
+      <span class="footer-brand-sub">Kue Lebaran Homemade</span>
+      <p>Kue kering tradisional buatan tangan dengan resep keluarga. Dibuat dengan cinta sejak 2016.</p>
+      <div class="sosmed">
+        <a href="#" class="sosmed-btn">📘</a>
+        <a href="#" class="sosmed-btn">📸</a>
+        <a href="#" class="sosmed-btn">🎵</a>
+        <a href="https://wa.me/6281210935249" class="sosmed-btn">💬</a>
+      </div>
+    </div>
+    <div class="footer-kol">
+      <h4>Menu Kue</h4>
+      <ul>
+        <li><a href="#">Nastar Nanas</a></li>
+        <li><a href="#">Kastengel Keju</a></li>
+        <li><a href="#">Kue Kacang</a></li>
+        <li><a href="#">Putri Salju</a></li>
+        <li><a href="#">Kue Coklat</a></li>
+      </ul>
+    </div>
+    <div class="footer-kol">
+      <h4>Informasi</h4>
+      <ul>
+        <li><a href="#">Tentang Kami</a></li>
+        <li><a href="#">Cara Pesan</a></li>
+        <li><a href="#">Info Pengiriman</a></li>
+        <li><a href="#">Paket Hampers</a></li>
+        <li><a href="#">FAQ</a></li>
+      </ul>
+    </div>
+    <div class="footer-kol">
+      <h4>Kontak</h4>
+      <ul>
+        <li><a href="#">📍 Jl. Tebet Barat Raya<br>Jakarta, Jakarta Selatan</a></li>
+        <li><a href="#">📞 +62 812-1093-5249</a></li>
+        <li><a href="#">✉️ mamakiki@email.com</a></li>
+        <li><a href="#">⏰ Senin–Sabtu: 08.00–20.00</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bawah">
+    <span>© 2025 Mama Kiki Kue Lebaran. Semua hak dilindungi.</span>
+    <span>Dibuat dengan 💛 penuh kasih sayang</span>
+  </div>
+</footer>
+
+<!-- ══════ MOBILE BOTTOM BAR ══════ -->
+<div class="mobile-bar" id="mobileBar">
+  <div class="mobile-bar-inner">
+    <a href="#beranda" class="mbar-item"><span class="ico">🏠</span><span>Beranda</span></a>
+    <a href="#kue" class="mbar-item"><span class="ico">🍪</span><span>Kue</span></a>
+    <div class="mbar-cart-wrap">
+      <button class="mbar-item" onclick="bukaCart()"><span class="ico">🛒</span><span>Pesan</span></button>
+      <span class="mbar-badge" id="mbarBadge">0</span>
+    </div>
+    <a href="#hampers" class="mbar-item"><span class="ico">🎁</span><span>Hampers</span></a>
+    <a href="#ulasan" class="mbar-item"><span class="ico">⭐</span><span>Ulasan</span></a>
+  </div>
+</div>
+
+<!-- ══════ RIWAYAT OVERLAY ══════ -->
+<div class="overlay-riwayat" id="overlayRiwayat"></div>
+
+<!-- ══════ PANEL RIWAYAT ══════ -->
+<div class="panel-riwayat" id="panelRiwayat">
+  <div class="riwayat-kepala">
+    <h3>📋 Riwayat Pesanan</h3>
+    <div class="riwayat-kepala-aksi">
+      <button class="btn-hapus-semua" id="btnHapusSemua" onclick="hapusSemuaRiwayat()">🗑 Hapus Semua</button>
+      <button class="tutup-riwayat" onclick="tutupRiwayat()">×</button>
+    </div>
+  </div>
+  <div class="riwayat-isi" id="isiRiwayat"></div>
+</div>
+
+<!-- ══════ PWA INSTALL BANNER ══════ -->
+<div class="pwa-banner" id="pwaBanner">
+  <div class="pwa-banner-icon">🍪</div>
+  <div class="pwa-banner-teks">
+    <div class="pwa-banner-judul">Pasang di Homescreen!</div>
+    <div class="pwa-banner-sub">Install Mama Kiki — buka seperti aplikasi, tanpa browser</div>
+  </div>
+  <div class="pwa-banner-aksi">
+    <button class="pwa-install-btn" id="pwaInstallBtn" onclick="installPWA()">Install</button>
+    <button class="pwa-close-btn" onclick="tutupPwaBanner()">×</button>
+  </div>
+</div>
+
+<!-- ══════ TOAST ══════ -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ═══════════════════════════════════════
+// PWA — MANIFEST + SERVICE WORKER + INSTALL
+// ═══════════════════════════════════════
+
+// 1. Inject Web App Manifest inline
+(function injectManifest() {
+  const manifest = {
+    name: 'Mama Kiki — Kue Lebaran',
+    short_name: 'Mama Kiki',
+    description: 'Kue kering lebaran homemade. Nastar, Kastengel, Putri Salju & lebih!',
+    start_url: './',
+    display: 'standalone',
+    background_color: '#1A3A2A',
+    theme_color: '#1A3A2A',
+    orientation: 'portrait-primary',
+    lang: 'id',
+    icons: [
+      {
+        src: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect width='192' height='192' rx='44' fill='%231A3A2A'/><text y='148' x='96' text-anchor='middle' font-size='140'>🍪</text></svg>",
+        sizes: '192x192',
+        type: 'image/svg+xml',
+        purpose: 'any maskable'
+      },
+      {
+        src: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='100' fill='%231A3A2A'/><text y='390' x='256' text-anchor='middle' font-size='360'>🍪</text></svg>",
+        sizes: '512x512',
+        type: 'image/svg+xml',
+        purpose: 'any maskable'
+      }
+    ],
+    screenshots: [],
+    categories: ['food', 'shopping'],
+    shortcuts: [
+      {
+        name: 'Pilih Kue',
+        short_name: 'Kue',
+        description: 'Langsung ke menu kue',
+        url: './#kue',
+        icons: [{ src: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'><text y='80' x='48' text-anchor='middle' font-size='80'>🍪</text></svg>", sizes: '96x96' }]
+      },
+      {
+        name: 'Paket Hampers',
+        short_name: 'Hampers',
+        description: 'Lihat paket hampers',
+        url: './#hampers',
+        icons: [{ src: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'><text y='80' x='48' text-anchor='middle' font-size='80'>🎁</text></svg>", sizes: '96x96' }]
+      }
+    ]
+  };
+  const blob = new Blob([JSON.stringify(manifest)], { type: 'application/json' });
+  const url  = URL.createObjectURL(blob);
+  document.getElementById('pwa-manifest').href = url;
+})();
+
+// 2. Register Service Worker (inline blob)
+if ('serviceWorker' in navigator) {
+  const swCode = `
+const CACHE = 'mama-kiki-v1';
+const ASSETS = ['./', './index.html'];
+
+self.addEventListener('install', e => {
+  e.waitUntil(
+    caches.open(CACHE).then(c => c.addAll(ASSETS)).then(() => self.skipWaiting())
+  );
+});
+self.addEventListener('activate', e => {
+  e.waitUntil(
+    caches.keys().then(keys =>
+      Promise.all(keys.filter(k => k !== CACHE).map(k => caches.delete(k)))
+    ).then(() => self.clients.claim())
+  );
+});
+self.addEventListener('fetch', e => {
+  if (e.request.method !== 'GET') return;
+  e.respondWith(
+    caches.match(e.request).then(cached => {
+      const network = fetch(e.request).then(res => {
+        if (res && res.status === 200 && res.type === 'basic') {
+          const clone = res.clone();
+          caches.open(CACHE).then(c => c.put(e.request, clone));
+        }
+        return res;
+      }).catch(() => cached);
+      return cached || network;
+    })
+  );
+});
+  `;
+  const swBlob = new Blob([swCode], { type: 'application/javascript' });
+  const swUrl  = URL.createObjectURL(swBlob);
+  navigator.serviceWorker.register(swUrl).catch(() => {});
+}
+
+// 3. Install prompt
+let deferredPrompt = null;
+
+window.addEventListener('beforeinstallprompt', e => {
+  e.preventDefault();
+  deferredPrompt = e;
+  // Tunda 3 detik agar user sempat lihat halaman dulu
+  setTimeout(() => {
+    if (!localStorage.getItem('pwa-dismissed')) {
+      document.getElementById('pwaBanner').classList.add('tampil');
+    }
+  }, 3000);
+});
+
+// iOS Safari — tidak ada beforeinstallprompt, pakai deteksi manual
+window.addEventListener('load', () => {
+  const isIos = /iphone|ipad|ipod/.test(navigator.userAgent.toLowerCase());
+  const isInStandalone = ('standalone' in navigator) && navigator.standalone;
+  const dismissed = localStorage.getItem('pwa-dismissed');
+  if (isIos && !isInStandalone && !dismissed) {
+    setTimeout(() => {
+      const btn = document.getElementById('pwaInstallBtn');
+      if (btn) {
+        btn.textContent = 'Cara Install';
+        btn.onclick = function() {
+          tutupPwaBanner();
+          tampilToast('📱 Ketuk tombol Share → "Add to Home Screen"');
+          // tampilkan toast lebih lama untuk iOS
+          clearTimeout(toastTimer);
+          toastTimer = setTimeout(() => document.getElementById('toast').classList.remove('tampil'), 6000);
+        };
+      }
+      if (!deferredPrompt) { // hanya tampil kalau banner belum ditampilkan
+        document.getElementById('pwaBanner').classList.add('tampil');
+      }
+    }, 3000);
+  }
+});
+
+function installPWA() {
+  if (!deferredPrompt) return;
+  deferredPrompt.prompt();
+  deferredPrompt.userChoice.then(result => {
+    if (result.outcome === 'accepted') {
+      tampilToast('🎉 Mama Kiki berhasil dipasang!');
+    }
+    deferredPrompt = null;
+    tutupPwaBanner();
+  });
+}
+
+function tutupPwaBanner() {
+  document.getElementById('pwaBanner').classList.remove('tampil');
+  localStorage.setItem('pwa-dismissed', '1');
+}
+
+// Sembunyikan banner saat app sudah terinstall
+window.addEventListener('appinstalled', () => {
+  tutupPwaBanner();
+  tampilToast('✅ Mama Kiki sudah terpasang di homescreen!');
+  deferredPrompt = null;
+});
+
+// ═══ NOMOR WA ═══
+const WA_NOMOR = '6281210935249';
+
+// ═══ NAV SCROLL ═══
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('padat', window.scrollY > 50);
+}, { passive: true });
+
+// ═══ HAMBURGER ═══
+function toggleDrawer() {
+  const drawer = document.getElementById('navDrawer');
+  if (drawer.classList.contains('buka')) {
+    tutupDrawer();
+  } else {
+    drawer.classList.add('buka');
+    document.getElementById('drawerOverlay').classList.add('buka');
+    document.getElementById('hamburger').classList.add('aktif');
+    document.body.style.overflow = 'hidden';
+  }
+}
+function tutupDrawer() {
+  document.getElementById('navDrawer').classList.remove('buka');
+  document.getElementById('drawerOverlay').classList.remove('buka');
+  document.getElementById('hamburger').classList.remove('aktif');
+  document.body.style.overflow = '';
+}
+
+// ═══ DATA KUE ═══
+const listKue = [
+  {
+    id: 'kue-1', nama: 'Nastar Nanas Premium', kat: 'klasik',
+    img: 'https://sumberberita.co.id/wp-content/uploads/2025/07/Resep-Nastar-Keju-yang-Lumer-dan-Anti-Retak-Cocok-untuk-Cemilan-saat-Lebaran_Lampiran192-1890933633.webp',
+    harga: 75000, badge: 'terlaris', rating: 5.0, ulasan: 312,
+    desc: 'Isian selai nanas asli buatan sendiri, kulit lumer di mulut',
+    per: 'toples'
+  },
+  {
+    id: 'kue-2', nama: 'Kastengel Keju', kat: 'keju',
+    img: 'https://images.tokopedia.net/img/KRMmCm/2023/4/4/3e9ccb4d-c22d-47ca-8df0-8b8c51add49b.jpg',
+    harga: 75000, badge: 'terlaris', rating: 4.9, ulasan: 248,
+    desc: 'Keju asli, gurih, renyah dan kaya rasa',
+    per: 'toples'
+  },
+  {
+    id: 'kue-3', nama: 'Kue Kacang', kat: 'klasik',
+    img: 'https://d1vbn70lmn1nqe.cloudfront.net/prod/wp-content/uploads/2023/07/18061927/Catat-Ini-Resep-Kue-Kacang-Tanah-yang-Enak-dan-Renyah.jpg.webp',
+    harga: 75000, badge: null, rating: 4.8, ulasan: 187,
+    desc: 'Kacang tanah sangrai segar, renyah dan harum',
+    per: 'toples'
+  },
+  {
+    id: 'kue-4', nama: 'Putri Salju', kat: 'klasik',
+    img: 'https://images.tokopedia.net/img/JFrBQq/2024/3/20/9fe25c15-e10a-4d65-aea7-995b50b77aba.jpg',
+    harga: 75000, badge: 'baru', rating: 4.9, ulasan: 134,
+    desc: 'Balutan gula halus nan lembut yang meleleh di mulut',
+    per: 'toples'
+  },
+  {
+    id: 'kue-5', nama: 'Kue Coklat', kat: 'coklat',
+    img: 'https://www.kuekeringbellarosa.com/wp-content/uploads/2024/11/kue-kering-lebaran-coklat.jpg',
+    harga: 75000, badge: 'baru', rating: 4.8, ulasan: 89,
+    desc: 'Dark chocolate premium, luar renyah dalam lembut fudgy',
+    per: 'toples'
+  },
+  {
+    id: 'kue-6', nama: 'Sagu Keju', kat: 'keju',
+    img: 'https://asset.kompas.com/crops/qPjCcWZcix39D0cBaQBjauT7L8k=/28x157:996x803/1200x800/data/photo/2022/03/14/622ee23d8a483.jpg',
+    harga: 75000, badge: 'limited', rating: 4.9, ulasan: 76,
+    desc: 'Sagu Keju Lembut dengan taburan keju apple yang melimpah',
+    per: 'toples'
+  },
+];
+
+// ═══ KERANJANG — pakai string ID agar konsisten ═══
+let keranjang = [];
+
+// ═══ RENDER KUE ═══
+function renderKue(filter = 'semua') {
+  const grid = document.getElementById('kueGrid');
+  const data = filter === 'semua' ? listKue : listKue.filter(k => k.kat === filter);
+  grid.innerHTML = data.map(k => `
+    <div class="kue-kartu">
+      <div class="kue-gambar">
+        <img src="${k.img}" alt="${k.nama}" loading="lazy"
+          onerror="this.src='https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=400'">
+        ${k.badge ? `<span class="kue-badge badge-${k.badge}">${
+          k.badge === 'terlaris' ? '🏆 Terlaris' :
+          k.badge === 'baru' ? '✨ Baru' : '⚡ Limited'
+        }</span>` : ''}
+        <div class="kue-overlay">
+          <button class="btn-tambah-kue" onclick="tambahKue('${k.id}')">+ Tambah ke Keranjang</button>
+        </div>
+      </div>
+      <div class="kue-info">
+        <div class="kue-kategori">${k.kat === 'klasik' ? 'Kue Klasik' : k.kat === 'keju' ? 'Kue Keju' : 'Kue Coklat'}</div>
+        <div class="kue-nama">${k.nama}</div>
+        <div class="kue-deskripsi">${k.desc}</div>
+        <div class="kue-bawah">
+          <div class="kue-harga">Rp ${k.harga.toLocaleString('id')}<span class="per">/${k.per}</span></div>
+          <div class="kue-rating"><span class="rating-bintang">★</span><span class="rating-angka">${k.rating} (${k.ulasan})</span></div>
+        </div>
+        <button class="btn-tambah-mobile" onclick="tambahKue('${k.id}')">+ Tambah ke Keranjang</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function filterKue(kat, btn) {
+  document.querySelectorAll('.ftab').forEach(b => b.classList.remove('aktif'));
+  btn.classList.add('aktif');
+  const grid = document.getElementById('kueGrid');
+  grid.style.opacity = '0';
+  setTimeout(() => {
+    renderKue(kat);
+    grid.style.transition = 'opacity .4s';
+    grid.style.opacity = '1';
+  }, 200);
+}
+renderKue();
+
+// ═══ TAMBAH HAMPERS ═══
+function tambahHampers(nama, harga) {
+  const id = 'hampers-' + harga;
+  const ada = keranjang.find(k => k.id === id);
+  if (ada) {
+    ada.qty++;
+  } else {
+    keranjang.push({
+      id, nama, harga, qty: 1,
+      img: 'https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=150&q=60'
+    });
+  }
+  updateKeranjang();
+  tampilToast(`🎁 ${nama} ditambahkan!`);
+}
+
+// ═══ TAMBAH KUE ═══
+function tambahKue(id) {
+  const kue = listKue.find(k => k.id === id);
+  if (!kue) return;
+  const ada = keranjang.find(k => k.id === id);
+  if (ada) {
+    ada.qty++;
+  } else {
+    keranjang.push({ id: kue.id, nama: kue.nama, harga: kue.harga, img: kue.img, qty: 1 });
+  }
+  updateKeranjang();
+  tampilToast(`🍪 ${kue.nama} ditambahkan!`);
+}
+
+// ═══ HAPUS & UBAH QTY — ID selalu string ═══
+function hapusItem(id) {
+  keranjang = keranjang.filter(k => k.id !== id);
+  updateKeranjang();
+}
+
+function ubahQty(id, delta) {
+  const item = keranjang.find(k => k.id === id);
+  if (!item) return;
+  item.qty += delta;
+  if (item.qty <= 0) {
+    keranjang = keranjang.filter(k => k.id !== id);
+  }
+  updateKeranjang();
+}
+
+function updateKeranjang() {
+  const jml = keranjang.reduce((s, k) => s + k.qty, 0);
+  const tot = keranjang.reduce((s, k) => s + k.harga * k.qty, 0);
+
+  document.getElementById('badgeNav').textContent = jml;
+  document.getElementById('mbarBadge').textContent = jml;
+  document.getElementById('totalCart').textContent = `Rp ${tot.toLocaleString('id')}`;
+
+  const isi = document.getElementById('isiCart');
+  if (!keranjang.length) {
+    isi.innerHTML = `<div class="cart-kosong"><span>🍪</span><p>Keranjangmu masih kosong nih~<br>Yuk pilih kue lebarannya!</p></div>`;
+  } else {
+    isi.innerHTML = keranjang.map(item => `
+      <div class="cart-item">
+        <div class="cart-item-img">
+          <img src="${item.img}" alt="${item.nama}"
+            onerror="this.src='https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=150'">
+        </div>
+        <div class="cart-item-info">
+          <div class="cart-item-nama">${item.nama}</div>
+          <div class="cart-item-harga">Rp ${(item.harga * item.qty).toLocaleString('id')}</div>
+          <div class="cart-qty">
+            <button class="qty-btn" data-action="kurang" data-id="${item.id}">−</button>
+            <span class="qty-angka">${item.qty}</span>
+            <button class="qty-btn" data-action="tambah" data-id="${item.id}">+</button>
+          </div>
+        </div>
+        <button class="hapus-item" data-action="hapus" data-id="${item.id}">×</button>
+      </div>
+    `).join('');
+  }
+}
+
+// ═══ EVENT DELEGATION CART — bekerja di desktop & mobile ═══
+function handleCartAction(e) {
+  // Cari elemen dengan data-action terdekat (untuk tap di anak elemen)
+  const btn = e.target.closest('[data-action]');
+  if (!btn) return;
+  e.preventDefault();
+  e.stopPropagation();
+  const action = btn.dataset.action;
+  const id     = btn.dataset.id;
+  if (action === 'tambah') ubahQty(id, 1);
+  else if (action === 'kurang') ubahQty(id, -1);
+  else if (action === 'hapus') hapusItem(id);
+}
+
+// Gunakan touchend SEKALIGUS click agar tidak double-fire
+const cartIsiEl = document.getElementById('isiCart');
+let touchHandled = false;
+cartIsiEl.addEventListener('touchend', function(e) {
+  touchHandled = true;
+  handleCartAction(e);
+  setTimeout(() => { touchHandled = false; }, 400);
+}, { passive: false });
+cartIsiEl.addEventListener('click', function(e) {
+  if (touchHandled) return; // sudah ditangani touchend
+  handleCartAction(e);
+});
+
+function bukaCart() {
+  sembunyikanToast();
+  document.getElementById('sidebarCart').classList.add('buka');
+  document.getElementById('overlayCart').classList.add('buka');
+  document.body.style.overflow = 'hidden';
+}
+function tutupCart() {
+  document.getElementById('sidebarCart').classList.remove('buka');
+  document.getElementById('overlayCart').classList.remove('buka');
+  document.body.style.overflow = '';
+}
+document.getElementById('overlayCart').addEventListener('click', tutupCart);
+
+// ═══ MODAL ═══
+function bukaModal() {
+  if (!keranjang.length) { tampilToast('🛒 Keranjang masih kosong!'); return; }
+  document.getElementById('sidebarCart').classList.remove('buka');
+  document.getElementById('overlayCart').classList.remove('buka');
+
+  const id = 'MK-' + Math.random().toString(36).slice(2,8).toUpperCase();
+  document.getElementById('idPesanan').textContent = id;
+  document.getElementById('inpNama').value = '';
+  document.getElementById('inpHp').value = '';
+  document.getElementById('inpAlamat').value = '';
+  document.getElementById('inpCatatan').value = '';
+
+  const tot = keranjang.reduce((s, k) => s + k.harga * k.qty, 0);
+  document.getElementById('ringkasanModal').innerHTML = `
+    ${keranjang.map(k => `
+      <div class="ringkasan-row">
+        <span>${k.nama} ×${k.qty}</span>
+        <span>Rp ${(k.harga * k.qty).toLocaleString('id')}</span>
+      </div>
+    `).join('')}
+    <div class="ringkasan-total-row">
+      <span>Total</span>
+      <span class="ringkasan-total-angka">Rp ${tot.toLocaleString('id')}</span>
+    </div>
+  `;
+  document.getElementById('overlayModal').classList.add('buka');
+  document.body.style.overflow = 'hidden';
+  setTimeout(() => { document.getElementById('inpNama').focus(); }, 350);
+}
+
+function tutupModal() {
+  document.getElementById('overlayModal').classList.remove('buka');
+  document.body.style.overflow = '';
+}
+document.getElementById('overlayModal').addEventListener('click', function(e) {
+  if (e.target === this) tutupModal();
+});
+
+// ═══════════════════════════════════════
+// RIWAYAT PESANAN — localStorage
+// ═══════════════════════════════════════
+
+const RIWAYAT_KEY = 'mamakiki_riwayat';
+
+function getRiwayat() {
+  try { return JSON.parse(localStorage.getItem(RIWAYAT_KEY)) || []; }
+  catch { return []; }
+}
+
+function simpanRiwayat(data) {
+  localStorage.setItem(RIWAYAT_KEY, JSON.stringify(data));
+  updateRiwayatCnt();
+}
+
+function tambahKeRiwayat(pesanan) {
+  const list = getRiwayat();
+  list.unshift(pesanan); // terbaru di atas
+  // Simpan maks 50 riwayat
+  if (list.length > 50) list.splice(50);
+  simpanRiwayat(list);
+}
+
+function updateRiwayatCnt() {
+  const n = getRiwayat().length;
+  document.getElementById('riwayatCnt').textContent = n;
+}
+
+function renderRiwayat() {
+  const list  = getRiwayat();
+  const el    = document.getElementById('isiRiwayat');
+  const hapus = document.getElementById('btnHapusSemua');
+
+  if (!list.length) {
+    hapus.style.display = 'none';
+    el.innerHTML = `
+      <div class="riwayat-kosong">
+        <span>📋</span>
+        <p>Belum ada riwayat pesanan.<br>Pesanan yang sudah dikirim ke WhatsApp<br>akan tersimpan di sini.</p>
+      </div>`;
+    return;
+  }
+
+  hapus.style.display = '';
+  el.innerHTML = list.map((p, idx) => `
+    <div class="riwayat-item" id="ri-${idx}">
+      <div class="riwayat-item-atas">
+        <div class="riwayat-id">${p.id}</div>
+        <span class="riwayat-status">✓ Terkirim</span>
+      </div>
+      <div class="riwayat-meta">
+        <span>👤 ${p.nama}</span>
+        ${p.hp ? `<span>📞 ${p.hp}</span>` : ''}
+        <span>🕐 ${p.waktu}</span>
+      </div>
+      <div class="riwayat-meta" style="margin-top:-4px">
+        <span>📍 ${p.alamat.length > 50 ? p.alamat.slice(0,50)+'…' : p.alamat}</span>
+      </div>
+      <div class="riwayat-produk-list">
+        ${p.items.map(it => `
+          <div class="riwayat-produk-row">
+            <span>${it.nama} ×${it.qty}</span>
+            <span>Rp ${(it.harga * it.qty).toLocaleString('id')}</span>
+          </div>
+        `).join('')}
+      </div>
+      <div class="riwayat-total-row">
+        <span class="riwayat-total-label">Total Pesanan</span>
+        <span class="riwayat-total-val">Rp ${p.total.toLocaleString('id')}</span>
+      </div>
+      ${p.catatan ? `<div style="margin-top:8px;font-size:11px;color:var(--teks-abu)">📝 ${p.catatan}</div>` : ''}
+      <div class="riwayat-aksi">
+        <button class="btn-pesan-lagi" onclick="pesanLagi(${idx})">🔄 Pesan Lagi</button>
+        <button class="btn-hapus-item-riwayat" onclick="hapusRiwayatItem(${idx})">🗑</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function bukaRiwayat() {
+  tutupCart();
+  renderRiwayat();
+  document.getElementById('panelRiwayat').classList.add('buka');
+  document.getElementById('overlayRiwayat').classList.add('buka');
+  document.body.style.overflow = 'hidden';
+}
+
+function tutupRiwayat() {
+  document.getElementById('panelRiwayat').classList.remove('buka');
+  document.getElementById('overlayRiwayat').classList.remove('buka');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('overlayRiwayat').addEventListener('click', tutupRiwayat);
+
+function hapusRiwayatItem(idx) {
+  const list = getRiwayat();
+  list.splice(idx, 1);
+  simpanRiwayat(list);
+  renderRiwayat();
+}
+
+function hapusSemuaRiwayat() {
+  if (!confirm('Hapus semua riwayat pesanan?')) return;
+  simpanRiwayat([]);
+  renderRiwayat();
+}
+
+function pesanLagi(idx) {
+  const p = getRiwayat()[idx];
+  if (!p) return;
+  // Masukkan ulang item ke keranjang
+  p.items.forEach(it => {
+    const ada = keranjang.find(k => k.id === it.id);
+    if (ada) ada.qty += it.qty;
+    else keranjang.push({ id: it.id, nama: it.nama, harga: it.harga, img: it.img || '', qty: it.qty });
+  });
+  updateKeranjang();
+  tutupRiwayat();
+  bukaCart();
+  tampilToast(`🛒 ${p.items.length} item ditambahkan ke keranjang!`);
+}
+
+// Init counter saat load
+updateRiwayatCnt();
+
+// ═══ KIRIM WA ═══
+function kirimWA() {
+  const nama    = document.getElementById('inpNama').value.trim();
+  const hp      = document.getElementById('inpHp').value.trim();
+  const alamat  = document.getElementById('inpAlamat').value.trim();
+  const catatan = document.getElementById('inpCatatan').value.trim();
+  const idPesanan = document.getElementById('idPesanan').textContent;
+
+  if (!nama) {
+    tampilToast('⚠️ Nama tidak boleh kosong!');
+    document.getElementById('inpNama').focus();
+    return;
+  }
+  if (!alamat) {
+    tampilToast('⚠️ Alamat pengiriman harus diisi!');
+    document.getElementById('inpAlamat').focus();
+    return;
+  }
+
+  const tot = keranjang.reduce((s, k) => s + k.harga * k.qty, 0);
+  const tgl = new Date().toLocaleString('id-ID', {
+    day: '2-digit', month: 'long', year: 'numeric',
+    hour: '2-digit', minute: '2-digit'
+  });
+  const itemList = keranjang
+    .map(k => `  • ${k.nama} ×${k.qty}  →  Rp ${(k.harga * k.qty).toLocaleString('id')}`)
+    .join('\n');
+
+  const pesan =
+`🍪 *PESANAN BARU — MAMA KIKI* 🌙
+
+👤 *Data Pemesan*
+• Nama       : ${nama}
+• No. HP     : ${hp || '-'}
+• ID Pesanan : ${idPesanan}
+• Waktu      : ${tgl}
+
+📍 *Alamat Pengiriman*
+${alamat}
+
+🛒 *Rincian Pesanan*
+${itemList}
+
+${catatan ? `📝 Catatan: ${catatan}\n\n` : ''}💰 *Total: Rp ${tot.toLocaleString('id')}*
+
+_Terima kasih sudah memesan di Mama Kiki! 🌙_
+_Kue lezat segera kami siapkan untuk kamu_ 💛`;
+
+  window.open(`https://wa.me/${WA_NOMOR}?text=${encodeURIComponent(pesan)}`, '_blank');
+
+  // ══ SIMPAN KE RIWAYAT ══
+  tambahKeRiwayat({
+    id:      idPesanan,
+    nama,
+    hp:      hp || '-',
+    alamat,
+    catatan: catatan || '',
+    waktu:   tgl,
+    items:   keranjang.map(k => ({ id: k.id, nama: k.nama, harga: k.harga, img: k.img, qty: k.qty })),
+    total:   tot
+  });
+
+  tutupModal();
+  keranjang = [];
+  updateKeranjang();
+  tampilToast(`🎉 Pesanan ${nama} berhasil dikirim & disimpan!`);
+}
+
+// ═══ SALIN KODE PROMO ═══
+function salinKode() {
+  navigator.clipboard.writeText('LEBARAN25').catch(() => {});
+  tampilToast('✅ Kode LEBARAN25 disalin!');
+}
+
+// ═══ TOAST ═══
+let toastTimer;
+function tampilToast(pesan) {
+  const el = document.getElementById('toast');
+  el.textContent = pesan;
+  el.classList.add('tampil');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.classList.remove('tampil'), 3200);
+}
+function sembunyikanToast() {
+  clearTimeout(toastTimer);
+  document.getElementById('toast').classList.remove('tampil');
+}
+
+// ═══ SCROLL REVEAL ═══
+const reveals = document.querySelectorAll('.reveal');
+if ('IntersectionObserver' in window) {
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('terlihat'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.08 });
+  reveals.forEach(el => io.observe(el));
+} else {
+  reveals.forEach(el => el.classList.add('terlihat'));
+}
+
+// ═══ SMOOTH SCROLL ═══
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
+  });
+});
+
+// ═══ ACTIVE MOBILE NAV ═══
+const secs = document.querySelectorAll('section[id], .hero[id]');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  secs.forEach(s => { if (window.scrollY >= s.offsetTop - 120) cur = s.id; });
+  document.querySelectorAll('.mbar-item[href]').forEach(a =>
+    a.classList.toggle('aktif', a.getAttribute('href') === '#' + cur)
+  );
+}, { passive: true });
+</script>
+</body>
+</html>
